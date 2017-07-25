@@ -74,9 +74,9 @@ bookmark it. For a desktop game, keep the icon on your desktop. If *you*, the
 creator, don't do these things---if you don't actually enjoy playing your own
 game---how can you expect anyone else to?
 
-## Tip #5: Ask For Input From Friends*
+## Tip #5: Ask For Input From Friends&ast;
 
-* *But don't lisen to everything they say.*
+*(&ast;But don't lisen to everything they say...)*
 
 You should absolutely share your game with your friends and ask for their input.
 Many times, their fresh eyes will be able to spot glitches or imbalances that

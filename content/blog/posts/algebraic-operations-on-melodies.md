@@ -69,8 +69,8 @@ Music is no exception.
 
 ### Some Background
 
-(If you are familiar with the notion of pitch classes, please feel free to
-skip ahead to the [next section](#operations-on-pitch-classes).)
+*(If you are familiar with the notion of pitch classes, please feel free to
+skip ahead to the [next section](#operations-on-pitch-classes).)*
 
 Let's think musically now. Music is made up of a series of notes, each having a
 particular frequency (or *pitch*) and *duration*. For now, I will focus
@@ -79,7 +79,7 @@ topic that we will cover later!
 
 Pitch is divided into two parts: a *pitch class* and an *octave*. Pitch classes
 are assigned letter names: A, B, C, D, E, F, or G. These are the white notes on
-a piano[^piano] (see picture below). However, there are also pitch classes in
+a piano (see picture below). However, there are also pitch classes in
 between some of these letters! These correspond to the black notes on a piano.
 We represent them with either a "sharp" (symbolized ♯) or "flat" (symbolized ♭).
 A sharp raises a pitch by a half-step, and a flat lowers a pitch by a half-step
@@ -89,12 +89,10 @@ note just to the right of A on the piano. This could also be notated B♭ ("B
 flat"). We say that A♯ and B♭ are *enharmonic* because they represent the same
 note.
 
-[^piano]:
-    I will use the piano as a pedagogical tool because of its easily-visualized
-    keys, but these concepts apply to every pitched instrument in standard
-    Western music.
 
-![A piano keyboard with note names.][piano]
+![A piano keyboard with note names. I will use the piano as a pedagogical tool
+because of its easily-visualized keys, but these concepts apply to every pitched
+instrument in standard Western music.][piano]
 
 One thing to watch out for is that E♯ is enharmonic to F, because E is right
 next to F on the piano (no black keys in between). Similarly, B♯ is enharmonic
@@ -130,13 +128,12 @@ twice the frequency of that note. So, if we know that one C has a frequency of
 440 Hz, we also know that 880 Hz and 220 Hz represent C as well. So while 220
 Hz, 440 Hz, and 880 Hz are different pitches (they reside in different octaves),
 they are in the same pitch *class*, C. This simple relationship is why the human
-ear perceives all C's to sound alike.[^overtones] This also explains why they
-are all grouped together in one pitch class!
+ear perceives all C's to sound alike. This also explains why they are all
+grouped together in one pitch class!
 
-[^overtones]:
-    The more technical reason that all C's sound so similar is that they share
-    many of the same [overtones][overtones]. This is a direct consequence of the
-    fact that they are all related in a simple 2:1 ratio.
+*(The more technical reason that all C's sound so similar is that they share
+many of the same [overtones][overtones]. This is a direct consequence of the
+fact that they are all related in a simple 2:1 ratio.)*
 
 Put another way, the set of all C's forms the pitch class, whereas one
 individual C in a particular octave (with a particular frequency) would be what
@@ -320,17 +317,16 @@ Specifically, you just learned the basics of [group theory][group-theory]. An
 operation that follows our \\(a\\) laws, combined with a set of objects (like
 the integers), forms a [group][group]. And that's really, really cool. Integers
 under addition form a group, real numbers under multiplication form a
-group[^reals], rotations of polygons form a group, Rubik's cube permutations
+group, rotations of polygons form a group, Rubik's cube permutations
 form a group, "clock" (modular) arithmetic forms a group, and finally, we can of
 course, apply group theory to music. All of these can be described in terms of
 our all-powerful \\(a\\) laws (the \\(a\\) laws are formally called the *group
 laws*, by the way, but I hadn't wanted to throw out the term group before now).
 
-[^reals]:
-    If you want to be truly mind blown, look at [this][mse] Math StackExchange
-    post once you are comfortable with the notion of a group (which you should
-    be after the next few sections). My mind figuratively exploded when I read
-    this for the first time.
+*(By the way, if you want to be truly mind blown, look at [this][mse] Math
+StackExchange post once you are comfortable with the notion of a group---which
+you should be after the next few sections. My mind figuratively exploded when I
+read this for the first time.)*
 
 *Now* let's get back to the music!
 
@@ -453,8 +449,9 @@ Let's see one more monoid.
 We will define another operation, \\(s\\) to be the operation that composes two
 musical objects *sequentially*, one after another. You can verify the three
 monoid laws for yourself, if you'd like. What do you think the identity element
-would be?  Hint: <span>don't forget that notes have a duration, too</span>{:
-.spoiler}.
+would be?
+
+*(Hint: don't forget that notes have a duration, too.)*
 
 ## Algebraic Operations on Melodies
 
@@ -469,14 +466,12 @@ a parallel composition reversed is all its components reversed, and a sequential
 composition reversed is the composition backward.
 
 We can also generalize \\(a\\) to work on any musical object; chords can be
-shifted up and down, and so can melodies.[^tonality] You can think of many
-different algebraic operations on melodies, like changing note durations,
-inverting notes, repeating sequences, etc., but I will leave that up to you!
-
-[^tonality]:
-    In my project specifically, I allow for shifting up and down by either major
-    intervals, minor intervals, or any (atonal) interval---this adjusts the
-    "flavor" (tonality) of the randomly generated songs.
+shifted up and down, and so can melodies. In my project specifically, I allow
+for shifting up and down by either major intervals, minor intervals, or any
+(atonal) interval---this adjusts the "flavor" (tonality) of the randomly
+generated songs. You can think of many different algebraic operations on
+melodies, like changing note durations, inverting notes, repeating sequences,
+etc., but I will leave that up to you!
 
 The key application of this theory in my project is that I define a set of a few
 of these operations, and randomly (and recursively) apply them to some starter

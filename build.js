@@ -17,9 +17,9 @@ var marked = require("marked");
 
 var renderer = new marked.Renderer();
 
-renderer.image = function(src, title, info) {
+renderer.image = function(src, info, caption) {
   var infoArray = info.split("::");
-  var caption = infoArray[0];
+  var title = infoArray[0];
   var sourceName = infoArray[1];
 
   var alt = title ? title : caption;
@@ -141,7 +141,7 @@ var projects =
     }
   , { "title": "JPL Runner"
     , "desc": "JPL Runner is a 2D infinite runner game written in Typescript designed to work well with mobile devices."
-    , "href": "http://jlub.in/jpl-runner"
+    , "href": "https://jlubi333.github.io/jpl-runner/"
     , "img": "jpl-runner.png"
     }
   , { "title": "Bin :: Hex"
@@ -156,7 +156,7 @@ var projects =
     }
   , { "title": "Jella"
     , "desc": "Jella is a mathematical modeling system heavily inspired by STELLA (made by isee systems). It is a multi-compartment model simulator."
-    , "href": "http://dev.jlub.in/jella"
+    , "href": "http://jlubi333.github.io/jpl-dev/jella/"
     , "img": "jella.png"
     }
   , { "title": "Algebraic Operations on Melodies"
@@ -166,37 +166,37 @@ var projects =
     }
   , { "title": "JPL Haiku"
     , "desc": "Need to write a haiku for English class? Look no further."
-    , "href": "http://dev.jlub.in/jplhaiku"
+    , "href": "http://jlubi333.github.io/jpl-dev/jplhaiku/"
     , "img": "jpl-haiku.png"
     }
   , { "title": "JPL Clock"
     , "desc": "What time is it anyway?"
-    , "href": "http://dev.jlub.in/clock"
+    , "href": "http://jlubi333.github.io/jpl-dev/clock/"
     , "img": "jpl-clock.png"
     }
   , { "title": "Jicobot"
     , "desc": "Jicobot is a finite-state machine inspired by Picobot."
-    , "href": "http://dev.jlub.in/jicobot"
+    , "href": "http://jlubi333.github.io/jpl-dev/jicobot/"
     , "img": "jicobot.png"
     }
   , { "title": "MultiPainter"
     , "desc": "Have fun painting with your friends!"
-    , "href": "http://dev.jlub.in/multipainter"
+    , "href": "http://jlubi333.github.io/jpl-dev/multipainter/"
     , "img": "multi-painter.png"
     }
   , { "title": "Physicist's Sketchpad"
     , "desc": "Physicist's Sketchpad will solve any related rates problem dealing with triangles by using the arcane magic known as calculus."
-    , "href": "http://dev.jlub.in/psketch"
+    , "href": "http://jlubi333.github.io/jpl-dev/psketch/"
     , "img": "psketch.png"
     }
   , { "title": "Reaction Reactor"
     , "desc": "For when a single reaction image just isn't enough."
-    , "href": "http://jlub.in/ReactionReactor"
+    , "href": "http://jlubi333.github.io/ReactionReactor/"
     , "img": "reaction-reactor.png"
     }
   , { "title": "Homework Roulette"
     , "desc": "Teachers, why not add a bit of risk to your homework collection routine?"
-    , "href": "http://dev.jlub.in/roulette"
+    , "href": "http://jlubi333.github.io/jpl-dev/roulette/"
     , "img": "homework-roulette.png"
     }
   ]
@@ -233,6 +233,7 @@ Metalsmith(__dirname)
   ))
   .use(markdown(
     { "renderer": renderer
+    , "smartypants": true
     }
   ))
   .use(permalinks(
