@@ -1,14 +1,14 @@
 {{> head title="{{sitename}} | {{title}}" class="main"}}
   {{> main-nav}}
-    <div class="content">
-      <h2>{{title}}</h2>
+    <div class="content blog">
+      <h1>{{title}}</h1>
       <ul>
         {{#each posts}}
-          <li>
-            <a href="/{{this.path}}">
-              {{this.title}}
-            </a>
-          </li>
+          {{> blog-post
+                title=this.title
+                date=this.publishDate
+                path=this.path
+          }}
         {{/each}}
       </ul>
     </div>

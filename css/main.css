@@ -7,14 +7,34 @@
   --pop-color: #FF5500;
   --pop-text-color: #FFFFFF;
   --pop-color-translucent: rgba(255, 85, 0, 0.8);
+  --medium-color: #555555;
+  --faint-color: #BBBBBB;
+  --very-faint-color: #EEEEEE;
 
-  --main-nav-width: 250px;
+  --main-nav-width: 300px;
   --spacing: 50px;
   --content-margin-l: calc(var(--main-nav-width) + var(--spacing));
-  --content-margin-r: calc(3 * var(--spacing));
-  --content-margin-h: calc(var(--content-margin-l) + var(--content-margin-r));
+  --content-max-width: 650px;
 
   --portfolio-items-per-row: 3;
+
+  --element-spacing: 0.5em;
+  --normal-border-radius: 5px;
+  --special-width: 80%;
+  --special-margin: calc(2 * var(--element-spacing)) auto;
+}
+
+@media(max-width: 900px) {
+  :root {
+    --portfolio-items-per-row: 2;
+    --content-margin-l: var(--spacing);
+  }
+}
+
+@media(max-width: 500px) {
+  :root {
+    --portfolio-items-per-row: 1;
+  }
 }
 
 /******************************************************************************\
@@ -82,6 +102,13 @@ a:hover {
   margin: 0 20px;
 }
 
+@media(max-width: 700px) {
+  .fancy-nav li {
+    display: block;
+    margin: 10px;
+  }
+}
+
 /******************************************************************************\
 |* Main Nav
 \******************************************************************************/
@@ -95,9 +122,25 @@ a:hover {
   bottom: var(--spacing);
 }
 
+@media(max-width: 900px) {
+  .main-nav {
+    position: static;
+    width: 100%;
+    margin: var(--spacing);
+  }
+
+  .main-nav li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+}
+
 .main-nav h1 {
+  /* font-size * line-height == same for .content h1 */
   font-size: 1.5em;
-  line-height: 2em;
+  line-height: 1em;
+
+  margin-bottom: 20px;
 }
 
 .main-nav ul {
@@ -113,14 +156,22 @@ a:hover {
 \******************************************************************************/
 
 .content {
+  max-width: var(--content-max-width);
   margin: var(--spacing);
   margin-left: var(--content-margin-l);
-  margin-right: var(--content-margin-r);
   color: var(--main-text-color);
 }
 
-.content h2 {
+.content.portfolio {
+  max-width: none;
+}
+
+.content h1 {
+  /* font-size * line-height == same for .main-nav h1 */
   font-size: 2em;
+  line-height: 0.75em;
+
+  margin-bottom: 20px;
 }
 
 /******************************************************************************\
@@ -131,22 +182,23 @@ a:hover {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .portfolio-projects a {
   --item-margin: 5px;
   --inner-margins: calc(2 * var(--portfolio-items-per-row) * var(--item-margin));
-  --outer-margins: var(--content-margin-h);
+  --outer-margins: calc(var(--content-margin-l) + var(--spacing));
   --available-space: calc(100vw - var(--outer-margins) - var(--inner-margins));
-  --size: calc(var(--available-space) / var(--portfolio-items-per-row));
+  --item-size: calc(var(--available-space) / var(--portfolio-items-per-row));
 
-  width: var(--size);
-  height: var(--size);
+  width: var(--item-size);
+  height: var(--item-size);
   margin: var(--item-margin);
 
   display: block;
   border-radius: 50%;
-  border: 1px solid #555555;
+  border: 1px solid var(--faint-color);
   padding: 5px;
   overflow: hidden;
   position: relative;
@@ -166,8 +218,8 @@ a:hover {
   right: 0;
   bottom: 0;
   left: 0;
-  transform: translateY(100%);
-  transition: transform 0.5s;
+  transform: translateY(101%);
+  transition: transform 0.4s;
 }
 
 .portfolio-projects a:hover .secondary {
@@ -183,18 +235,112 @@ a:hover {
 }
 
 /******************************************************************************\
+|* Blog
+\******************************************************************************/
+
+.blog ul {
+  list-style-type: none;
+  font-size: 1.2em;
+}
+
+.blog li {
+  margin: 10px 0;
+}
+
+.blog .date {
+  display: inline-block;
+  color: var(--faint-color);
+  width: 175px;
+}
+
+/******************************************************************************\
 |* Post
 \******************************************************************************/
 
-.post p,
-.post li {
-  margin: 5px 0;
+.post {
+  line-height: 1.5em;
+}
+
+.post h2 {
+  font-size: 1.5em;
+}
+
+  .post p
+, .post li
+, .post h2
+, .post h3
+, .post h4
+{
+  margin: var(--element-spacing) 0;
 }
 
 .post li {
-  margin-left: 20px;
+  margin-left: 3em;
 }
 
 .post a {
   color: var(--pop-color);
+}
+
+.post figure {
+  width: var(--special-width);
+	margin: var(--special-margin);
+
+  padding: 10px;
+  border: 1px solid var(--main-text-color);
+  border-radius: var(--normal-border-radius);
+}
+
+.post figure img {
+  width: 100%;
+  border-radius: var(--normal-border-radius);
+}
+
+.post figure figcaption {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid var(--pop-color);
+  border-radius: var(--normal-border-radius);
+}
+
+.post table {
+  width: var(--special-width);
+  margin: var(--special-margin);
+
+  border: 1px solid var(--main-text-color);
+  border-radius: 5px;
+  border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.post thead {
+  background-color: var(--very-faint-color);
+}
+
+  .post th
+, .post td
+{
+  padding: 10px;
+  border: 1px solid var(--main-text-color);
+}
+
+.post blockquote {
+  background-color: var(--very-faint-color);
+  border-left: 10px solid var(--pop-color-translucent);
+  padding: 10px;
+}
+
+.post blockquote p {
+  margin: 0;
+}
+
+.post blockquote cite {
+  display: block;
+  font-style: italic;
+  text-align: right;
+  margin-top: var(--element-spacing);
+}
+
+.post blockquote cite::before {
+  content: "—";
 }

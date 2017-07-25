@@ -3,11 +3,74 @@ var Metalsmith = require("metalsmith");
 var archive = require("metalsmith-archive");
 var assets = require("metalsmith-assets");
 var collections = require("metalsmith-collections");
-var default_values = require("metalsmith-default-values")
+var dateFormatter = require("metalsmith-date-formatter");
+var defaultValues = require("metalsmith-default-values")
 var drafts = require("metalsmith-drafts")
 var layouts = require("metalsmith-layouts");
 var markdown = require("metalsmith-markdown");
 var permalinks = require("metalsmith-permalinks");
+
+var marked = require("marked");
+
+////////////////////////////////////////////////////////////////////////////////
+// Markdown Rendering
+
+var renderer = new marked.Renderer();
+
+renderer.image = function(src, title, info) {
+  var infoArray = info.split("::");
+  var caption = infoArray[0];
+  var sourceName = infoArray[1];
+
+  var alt = title ? title : caption;
+
+  var sourceString = "";
+  if (sourceName) {
+    sourceString =
+      "<p class='image-source'>\n" +
+        "<b>Source:</b> <a href='" + src + "'>" + sourceName + "</a>.\n" +
+      "</p>\n";
+  }
+
+  return (
+    "<figure>\n" +
+      "<img src='" + src + "' alt='" + alt + "'>\n" +
+      "<figcaption>" +
+        "<p class='image-caption'>" + caption + "</p>\n" +
+        sourceString +
+      "</figcaption>\n" +
+    "</figure>\n"
+  );
+}
+
+renderer.blockquote = function(quoteHtml) {
+  // Removes <p> tag
+  var quoteText = quoteHtml.substring(3, quoteHtml.length - 3);
+
+  var lastEm = quoteText.lastIndexOf("---");
+
+  var quoteContent;
+  var citeString;
+
+  if (lastEm == -1) {
+    quoteContent =
+      quoteText;
+    citeString =
+      "";
+  } else {
+    quoteContent =
+      quoteText.substring(0, lastEm);
+    citeString =
+      "<cite>" + quoteText.substring(lastEm + 3) + "</cite>";
+  }
+
+  return (
+    "<blockquote>\n" +
+        "<p>" + quoteContent + "</p>\n" +
+        citeString +
+    "</blockquote>\n"
+  );
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // Main Links
@@ -97,7 +160,7 @@ var projects =
     , "img": "jella.png"
     }
   , { "title": "Algebraic Operations on Melodies"
-    , "desc": "This was my Wolfram Demonstration for the 2015 <i>Mathematica</i> Summer Camp."
+    , "desc": "This was my Wolfram Demonstration for the 2015 **Mathematica** Summer Camp."
     , "href": "http://demonstrations.wolfram.com/AlgebraicOperationsOnMelodies/"
     , "img": "algebraic-operations-on-melodies.png"
     }
@@ -141,43 +204,57 @@ var projects =
 ////////////////////////////////////////////////////////////////////////////////
 
 Metalsmith(__dirname)
-  .metadata({
-    "sitename": "Justin Lubin",
-    "main-links": mainLinks,
-    "projects": projects
-  })
+  .metadata(
+    { "sitename": "Justin Lubin"
+    , "main-links": mainLinks
+    , "projects": projects
+    }
+  )
   .source("content")
   .destination("build")
   .clean(true)
   .use(drafts())
-  .use(collections({
-    "posts": "blog/posts/*.md",
-  }))
-  .use(default_values([
-    { "pattern": "blog/posts/*.md"
-    , "defaults":
-        { "layout": "post.html"
+  .use(dateFormatter())
+  .use(collections(
+    { "posts":
+        { "pattern": "blog/posts/*.md"
+        , "sortBy": "publishDate"
+        , "reverse": true
         }
     }
-  ]))
-  .use(markdown())
-  .use(permalinks({
-    "relative": false,
-    "linksets":
-      [ { match: { collection: "posts" }
-        , pattern: "blog/posts/:title"
-        }
-      ]
-  }))
-  .use(layouts({
-    "engine": "handlebars",
-    "default": "main.html",
-    "partials": "partials"
-  }))
-  .use(assets({
-    source: 'css',
-    destination: 'css'
-  }))
+  ))
+  .use(defaultValues(
+    [ { "pattern": "blog/posts/*.md"
+      , "defaults":
+          { "layout": "post.html"
+          }
+      }
+    ]
+  ))
+  .use(markdown(
+    { "renderer": renderer
+    }
+  ))
+  .use(permalinks(
+    { "relative": false
+    , "linksets":
+        [ { match: { collection: "posts" }
+          , pattern: "blog/posts/:title"
+          }
+        ]
+    }
+  ))
+  .use(layouts(
+    { "engine": "handlebars"
+    , "default": "main.html"
+    , "partials": "partials"
+    }
+  ))
+  .use(assets(
+    { source: "css"
+    , destination: "css"
+    }
+  ))
   .use(archive())
   .build(function(err) {
     if (err) {
