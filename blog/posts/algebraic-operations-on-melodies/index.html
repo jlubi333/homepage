@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{sitename}} | {{title}}</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css" />
+    <script
+      async
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"
+    >
+    </script>
+  </head>
+  <body class="main">
+  <nav class="main-nav">
+    <h1>
+      <a href="/">Justin Lubin</a>
+    </h1>
+    <ul>
+        <li>
+          <a href="/about-me">
+            About Me
+          </a>
+        </li>
+        <li>
+          <a href="/portfolio">
+            Portfolio
+          </a>
+        </li>
+        <li>
+          <a href="/blog">
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/contact">
+            Contact
+          </a>
+        </li>
+  </nav>
+    <div class="content post">
+      <h1>Algebraic Operations on Melodies</h1>
+      <blockquote>
+<p>May not music be described as the mathematics of the sense, mathematics as
+music of the reason?
+</p>
+<cite>James Joseph Sylvester</</cite></blockquote>
+<p>I have always been very drawn to the intersection of math and music. During the
+summer of 2015, I attended the <a href="https://education.wolfram.com/summer/camp/programs/mathematica/">Mathematica Summer Camp</a> (which was very
+fun, by the way) and had to complete a programming project in Mathematica over
+the course of two weeks. Naturally, I wanted to do something with math and
+music.</p>
+<p>I eventually settled on a random song generator, although with a little bit of a
+twist. Instead of generating a random melody, the generator will take two input
+melodies and apply a random set of operations to them, resulting in a unique
+song. In other words, the source of randomness is not in the melodies itself,
+but in how they are transformed, repeated, and layered over themselves.</p>
+<p><figure>
+<img src='http://demonstrations.wolfram.com/AlgebraicOperationsOnMelodies/HTMLImages/index.en/popup_3.jpg' alt='::Wolfram Demonstrations Project'>
+<figcaption><p class='image-caption'>Algebraic Operations on Melodies Wolfram Demonstration.</p>
+</figcaption>
+</figure>
+</p>
+<p>I am pretty happy with the result, but due to time constraints I couldn&#39;t make
+it as grand as I would have liked (and I haven&#39;t worked on it since then). For
+instance, one thing that the program currently lacks is the ability to input a
+custom melody---instead, it relies on a few built-in ones. To be truly viable as
+a composition tool, I would most certainly need to include custom melodies,
+among other things.</p>
+<p>And so, without further ado, I present to you my <a href="http://demonstrations.wolfram.com/AlgebraicOperationsOnMelodies/">algebraic music
+generator</a>.</p>
+<p>Regardless of the fact that my program is of dubious flexibility and utility, I
+find the mathematics behind it really interesting, so in this post I will focus
+on the math side of this project rather than the programming side.</p>
+<h2 id="abstract-algebra">Abstract Algebra</h2>
+<p>The core mathematical tool behind this project is <a href="https://en.wikipedia.org/wiki/Abstract_algebra">abstract algebra</a>.
+Although I&#39;m but a lowly incoming college freshman who hasn&#39;t actually <em>taken</em>
+abstract algebra, I&#39;ve learned a little bit about it on my own from the
+Internet, mainly due to my interest in <a href="https://www.haskell.org/">Haskell</a> and <a href="https://en.wikipedia.org/wiki/Category_theory">category
+theory</a>.</p>
+<p>As usual, Wikipedia summarizes this concept very nicely, in a completely
+non-self-referential and totally useful way:</p>
+<blockquote>
+<p><strong>Abstract algebra</strong> (occasionally called <strong>modern algebra</strong>) is the study of
+algebraic structures.</</p>
+</blockquote>
+<p>Wasn&#39;t that helpful? To be fair, Wikipedia isn&#39;t wrong, per se.</p>
+<p>I view abstract algebra as a way to <em>abstract</em> concepts that appear in many
+different forms. For example, it lets us treat, say, the symmetries of regular
+polygons in the same way that we might treat the permutations of a Rubik&#39;s cube.
+It allows us to describe certain behaviors and properties of these objects using
+a unified and powerful language.</p>
+<p>So what does this have to do with music? Well, it turns out that polygons and
+Rubik&#39;s cubes aren&#39;t the only things that abstract algebra can describe---in
+fact, that&#39;s far from the truth! A huge variety of concepts from a wide variety
+of disciplines lend themselves well to being studied under the lens of abstract
+algebra.</p>
+<p>Music is no exception.</p>
+<h2 id="the-algebra-of-music">The Algebra of Music</h2>
+<h3 id="some-background">Some Background</h3>
+<p>(If you are familiar with the notion of pitch classes, please feel free to
+skip ahead to the <a href="#operations-on-pitch-classes">next section</a>.)</p>
+<p>Let&#39;s think musically now. Music is made up of a series of notes, each having a
+particular frequency (or <em>pitch</em>) and <em>duration</em>. For now, I will focus
+primarily on pitch, but duration (and rhythm in general) is a very important
+topic that we will cover later!</p>
+<p>Pitch is divided into two parts: a <em>pitch class</em> and an <em>octave</em>. Pitch classes
+are assigned letter names: A, B, C, D, E, F, or G. These are the white notes on
+a piano[^piano] (see picture below). However, there are also pitch classes in
+between some of these letters! These correspond to the black notes on a piano.
+We represent them with either a &quot;sharp&quot; (symbolized ♯) or &quot;flat&quot; (symbolized ♭).
+A sharp raises a pitch by a half-step, and a flat lowers a pitch by a half-step
+(a half-step, or <em>semitone</em>, is simply the distance from one note on the piano
+to the next, regardless of color). So, for example, A♯ (&quot;A sharp&quot;) is the black
+note just to the right of A on the piano. This could also be notated B♭ (&quot;B
+flat&quot;). We say that A♯ and B♭ are <em>enharmonic</em> because they represent the same
+note.</p>
+<p>[^piano]:
+    I will use the piano as a pedagogical tool because of its easily-visualized
+    keys, but these concepts apply to every pitched instrument in standard
+    Western music.</p>
+<p><figure>
+<img src='http://www.piano-keyboard-guide.com/wp-content/uploads/2015/05/32-key-keyboard-1.jpg' alt='::Piano-Keyboard-Guide.com'>
+<figcaption><p class='image-caption'>A piano keyboard with note names.</p>
+</figcaption>
+</figure>
+</p>
+<p>One thing to watch out for is that E♯ is enharmonic to F, because E is right
+next to F on the piano (no black keys in between). Similarly, B♯ is enharmonic
+to C, because B is right next to C. The same logic applies to F♭ and C♭. This
+gives us a total of twelve possible pitches:</p>
+<ol>
+<li>A</li>
+<li>A♯/B♭</li>
+<li>B</li>
+<li>C</li>
+<li>C♯/D♭</li>
+<li>D</li>
+<li>D♯/E♭</li>
+<li>E</li>
+<li>F</li>
+<li>F♯/G♭</li>
+<li>G</li>
+<li>G♯/A♭</li>
+</ol>
+<p>You&#39;ll notice that I&#39;ve listed twelve pitch classes, but you know as well as I
+do that there are many more than just twelve keys on a piano. Even in the
+picture above you can see way more than twelve keys! The reason for this is that
+this group of twelve pitches repeats itself all the way up and down the piano.
+So, in reality, there are actually multiple notes that we would call &quot;C,&quot; but
+each one is in a different <em>octave</em>. An octave is just grouping of the twelve
+pitch classes above. In the above picture, there are about two and a half
+octaves visible (C to C is one, to C again is two, and to the last G is about a
+half).</p>
+<p>There is a very simple relationship between the frequencies of notes that differ
+by one octave: a note that is one octave higher than another note will have
+twice the frequency of that note. So, if we know that one C has a frequency of
+440 Hz, we also know that 880 Hz and 220 Hz represent C as well. So while 220
+Hz, 440 Hz, and 880 Hz are different pitches (they reside in different octaves),
+they are in the same pitch <em>class</em>, C. This simple relationship is why the human
+ear perceives all C&#39;s to sound alike.[^overtones] This also explains why they
+are all grouped together in one pitch class!</p>
+<p>[^overtones]:
+    The more technical reason that all C&#39;s sound so similar is that they share
+    many of the same <a href="https://en.wikipedia.org/wiki/Overtone">overtones</a>. This is a direct consequence of the
+    fact that they are all related in a simple 2:1 ratio.</p>
+<p>Put another way, the set of all C&#39;s forms the pitch class, whereas one
+individual C in a particular octave (with a particular frequency) would be what
+we call a pitch. There is no frequency for the abstract notion of a pitch class
+(like C), but there is a frequency assigned to a note with a pitch class in an
+octave (like C4, the C in the fourth octave).</p>
+<h3 id="operations-on-pitch-classes">Operations on Pitch Classes</h3>
+<p>So, what can we do with these pitch classes? Well, one thing we could talk about
+would be some sort of a notion of distance between them. Looking at the picture
+of the piano (or our listing of pitch classes), it would be reasonable to say
+that, for example, the distance from A to A♯ is one semitone, the distance from
+A to B is two, and the distance from C to G is seven. Additionally, the distance
+from any note to itself should be zero.</p>
+<p>Let&#39;s define a function \( d \) (for distance) that determines how far you
+have to travel to get from one pitch class to another (in semitones). Using the
+above examples, we have:</p>
+<ul>
+<li>\( d(A, A♯) = 1 \)</li>
+<li>\( d(A, B) = 2 \)</li>
+<li>\( d(C, G) = 7 \)</li>
+<li>\( d(E, E) = 0 \)</li>
+</ul>
+<p>We could extend this definition to account for <em>signed</em> distance, meaning that
+while the distance from C to G may be <em>positive</em> seven, the distance from G to C
+would be <em>negative</em> seven. We arrive at the following examples:</p>
+<ul>
+<li>\( d(A♯, A) = -1 \)</li>
+<li>\( d(B, A) = -2 \)</li>
+<li>\( d(G, C) = -7 \)</li>
+</ul>
+<p>In general, we have the property that, for any notes \( x \) and \( y \),
+\( d(x, y) = -d(y, x) \). We also know that \( d(x, x) = 0 \). We&#39;re off to
+a great start!</p>
+<p>Another function that we might want to have is one that will give us a new pitch
+class if we add a particular signed distance (in semitones) to another pitch
+class.  Let&#39;s call this function \( a \) (for add). We have:</p>
+<ul>
+<li>\( a(A, 1) = A♯ \)</li>
+<li>\( a(A, 2) = B \)</li>
+<li>\( a(C, 7) = G \)</li>
+<li>\( a(A♯, -1) = A \)</li>
+<li>\( a(B, -2) = A \)</li>
+<li>\( a(G, -7) = C \)</li>
+<li>\( a(F, 0) = F \)</li>
+</ul>
+<p>What properties do we have with this function? Glad you asked! Here are some
+that I spot:</p>
+<ul>
+<li>\( a(x, d(x, y)) = y \)</li>
+<li>\( a(a(x, d), -d) = x \)</li>
+<li>\( a(x, 0) = x \)</li>
+</ul>
+<p>Can you think of any others?</p>
+<p>The properties that I have listed should actually make a lot of sense. In
+fact... they actually look really, really similar to some other operations that
+I am sure you are very familiar with!</p>
+<p>We run into a little bit of trouble with our functions if we explore around the
+edges of our group of pitch classes. For example, what is \(a(G♯, 1)\)? There
+doesn&#39;t seem to be anything &quot;above&quot; a G♯. However, remember that our pitch
+classes repeat themselves; one note above G♯ is A! Our pitch class &quot;wraps
+around&quot; and goes back to the first element. In fact, this is the same behavior
+as the hands on a clock! If you add two hours to eleven o&#39;clock, you don&#39;t end
+up with thirteen o&#39;clock---the numbers wrap around and you are left with one
+o&#39;clock. In mathematics, we call this <em>modular</em> arithmetic. We will return to
+this idea later.</p>
+<p>To explore these operations and their properties more, let us first go back to
+our old friend, the set of integers, and see if we can make sense of these
+operations there.</p>
+<h3 id="operations-on-integers">Operations on Integers</h3>
+<p>Let&#39;s first try to define \( d \) for the integers. It shouldn&#39;t take much
+convincing to realize that the signed distance between two integers \( x \)
+and \( y \) is simply their difference, \( y - x \). Let&#39;s try it out:</p>
+<ul>
+<li>\( d(1, 3) = 3 - 1 = 2 \)</li>
+<li>\( d(3, 1) = 1 - 3 = -2 \)</li>
+<li>\( d(5, 5) = 5 - 5 = 0 \)</li>
+</ul>
+<p>Our properties of \( d \) that we outlined before still hold! These properties
+are, in fact, more like <em>laws</em> in the sense that we <em>define</em> \( d \) by these
+properties, rather than discovering these properties about \( d \) after the
+fact. They are intuitive truths upon which we build our function.</p>
+<p>This same notion of laws applies to our other function, \( a \). One readily
+apparent function over the integers that satisfies the laws of \( a \) is just
+ordinary addition:</p>
+<ul>
+<li>\( 5 + (8 - 5) = 8 \)</li>
+<li>\( 6 + 2 - 2 = 6 \)</li>
+<li>\( 9 + 0 = 0 \)</li>
+</ul>
+<p>And so, it seems as if, for the integers, \( d(x, y) = y - x \) and \( a(x,
+n) = x + n \).</p>
+<p>Let us see if we can formalize this, and perhaps prove that
+ordinary subtraction and addition really do fit our laws for \( d \) and \( a
+\).</p>
+<h3 id="formalizing-our-operations">Formalizing Our Operations</h3>
+<p>Let us first focus on our \( a \) function. We are now ready to formally
+define exactly the laws that a function must follow if it wishes to serve as an
+\( a \) function. This will allow us to generalize our \( a \) function to
+pretty much anything we can think of, including music (which is how we got into
+this whole formalization business in the first place).</p>
+<ul>
+<li>Firstly, we want \( a \) to be <em>associative</em>. All this means is that \(
+a(a(x, y), z) = a(x, a(y, z)) \). Ordinary addition follows this law for
+integers: (x + y) + z = x + (y + z).</li>
+<li>Secondly, we want there to be an <em>identity element</em> for the set over which \(
+a \) operates. Again, this is a really fancy word for a very simple concept;
+simply put, we want an object \( e \) to exist such that \( a(x, e) = a(e,
+x) = x \). And once again, ordinary addition follows this law for integers.
+In this case, \( e = 0 \), and so we have: \(x + 0 = 0 + x = x \).</li>
+<li>Thirdly, we want there to be an <em>inverse element</em> for every object in the set
+over which \( a \) operates. This means that for every object in the set,
+there should be a corresponding object that &quot;undoes&quot; \( a \) when combined
+with the original object. If our original element is notated \( x \), then
+the inverse element is typically notated \( x^{-1} \). For integers under
+ordinary addition, \(x^{-1} = -x\) (this is not to be confused with the
+multiplicative inverse; we are talking about addition here). As a concrete
+example, the inverse element under addition for the integer \(5\) is
+\(-5\), for \(3\) it is \(-3\), and for \(0\) it is \(0\).</li>
+<li>Lastly, we have a property that is a little bit weird. However, it is very
+nice to have, and cannot be proven from the three laws above. It should be so
+intuitive as to be redundant, but it is necessary to list. We want \(a\) to
+exhibit a property known as <em>closure</em>: that \( a(x, y) \) is always in the
+same set as \(x\) and \(y\). In the case of integers, this means that
+adding two integers will always result in another integer. An example of an
+operation that is <strong>not</strong> closed over the integers would be division: \(3
+\div 2 \) is \(1.5\), which is clearly not an integer.</li>
+</ul>
+<p>And so, because addition over the integers passes the above four tests, we can
+hereby decree it to be an official representative of the society of \(a\)!
+Woohoo!</p>
+<p>In other words, addition follows all of the laws that we expect \(a\) to
+follow, and so if we were to define \(a\) over the integers, letting \(a(x,
+y) = x + y\) would be a perfectly valid thing to do.</p>
+<p>This process will also work with real numbers and addition. It will also work
+with the positive real numbers and multiplication. Try working out \(a\) for
+different sets of numbers, or even seemingly non-mathematical things like food
+or crochet! The applications are limited only by your imagination. Sometimes you
+will find something that works (as in the case of addition over the integers),
+and other times you will find that it will not work (such as in the case of
+multiplication over the integers). Each time you try it out, the operation,
+identity element, and inverse elements will all be different. It&#39;s very fun to
+try to stretch your brain to come up with ways to fit this mathematical
+abstraction to the real world, and in many cases, you will find the operation to
+be very intuitive in the end!</p>
+<p>Speaking of real world applications... let&#39;s get back to the music!</p>
+<p>...But first, let&#39;s talk about our original function, \( d \). It turns out
+that our definition of \(a\) is powerful enough to be able to define \(d\)
+in terms of \(a\). This means that we don&#39;t need to come up with a new set of
+laws! We can rely on the fact that we proved \(a\) to be correct, and so we
+know that \(d\) has solid mathematical grounding. It&#39;s quite a simple
+definition, but it uses the important fact that every element must have an
+inverse. We let \( d(x, y) = a(y, x^{-1})\), and we&#39;re done. For integers,
+this means that \( d(x, y) = a(y, -x) = y - x\), which is exactly what we said
+before. We can now prove our properties about \(d\), too. For the case of
+integers, we have:</p>
+<ul>
+<li>\( -d(y, x) = -(x - y) = -x + y = y - x = d(x, y) \)</li>
+<li>\( d(x, x) = x - x = 0 \)</li>
+</ul>
+<p>As you can see, \(d\) is redundant when we have the awesome power of \(a\).</p>
+<p>Oh, by the way, you just did some of that <a href="https://en.wikipedia.org/wiki/Abstract_algebra">abstract algebra</a> stuff.
+Specifically, you just learned the basics of <a href="https://en.wikipedia.org/wiki/Group_theory">group theory</a>. An
+operation that follows our \(a\) laws, combined with a set of objects (like
+the integers), forms a <a href="https://en.wikipedia.org/wiki/Group_(mathematics)">group</a>. And that&#39;s really, really cool. Integers
+under addition form a group, real numbers under multiplication form a
+group[^reals], rotations of polygons form a group, Rubik&#39;s cube permutations
+form a group, &quot;clock&quot; (modular) arithmetic forms a group, and finally, we can of
+course, apply group theory to music. All of these can be described in terms of
+our all-powerful \(a\) laws (the \(a\) laws are formally called the <em>group
+laws</em>, by the way, but I hadn&#39;t wanted to throw out the term group before now).</p>
+<p>[^reals]:
+    If you want to be truly mind blown, look at <a href="http://math.stackexchange.com/a/1151115/161819">this</a> Math StackExchange
+    post once you are comfortable with the notion of a group (which you should
+    be after the next few sections). My mind figuratively exploded when I read
+    this for the first time.</p>
+<p><em>Now</em> let&#39;s get back to the music!</p>
+<h3 id="operations-on-pitch-classes-revisited-">Operations on Pitch Classes (Revisited)</h3>
+<p>We run into some issues if we try to formulate \(a\) as we did before: most
+egregiously, our definition of \(a\) for pitch classes takes in a pitch class
+and an integer---that&#39;s not how groups work! Groups utilize one set, and one set
+only. We can&#39;t deal with both pitch classes and integers at the same time; they
+are incompatible! Or are they? What if pitch classes <em>were</em> integers? Then we
+would only be dealing with one set: the integers (or the pitch classes, because
+saying &quot;pitch classes&quot; would be synonymous with saying &quot;integers&quot;).</p>
+<p>But no, that&#39;s ridiculous. There are an infinite number of integers, and only
+twelve pitch classes. But you know what else there is twelve of? Hours in a day.
+Coincidence? Yeah, pretty much... or is it?</p>
+<p>Yeah, it is. However, we <em>can</em> borrow the idea of modular arithmetic from clocks
+and apply it here beautifully. Remember that our pitch classes behave just like
+the hands on a clock: one semitone above G♯ is A. In a sense, twelve (G♯)
+&quot;equals&quot; zero (A). In the case of the integers, we would say that twelve is
+equal to zero (modulo twelve). This is written out as \(12 \equiv 0\
+(\text{mod}\ 12)\). We could also say that, for example, \(14 \equiv 2\
+(\text{mod}\ 12)\) and \(5 \equiv 2\ (\text{mod}\ 3)\).</p>
+<p>And so, we can create a group for integers from zero to twelve (or any
+upper bound) with the operation of &quot;clock&quot; (modular) arithmetic. You can verify
+that all the laws hold, if you wish. One interesting thing to take note of is
+the inverse element in this group; because there are no longer negative numbers,
+the inverse element must be something else. If you think about it, winding the
+clock back one hour is the same as moving it ahead by eleven. I&#39;m sure you have
+had the experience of trying to set an old clock to a particular time, only to
+accidentally pass a certain number, which results in you having to increase all
+the way past twelve hours and go back to the number you wanted (it&#39;s even worse
+for minutes, because you&#39;re working modulo sixty). This is the concept of an
+inverse element working in real life---you&#39;ve been working with inverse elements
+for longer than you&#39;ve thought!</p>
+<p>Now that we have a group for our clock numbers (zero through twelve), we are but
+one step away from creating a group for our pitch classes. In fact, we pretty
+much already did so!  We mapped every pitch class to a clock number, so wherever
+we see a clock number, we can replace it with the corresponding pitch class, and
+vice versa.  This one-to-one mapping is called an <a href="https://en.wikipedia.org/wiki/Isomorphism">isomorphism</a> in group
+theory. Look at you, learning all these fancy words for simple concepts!</p>
+<p>And so, it is time to define our first proper operation on pitch classes. How
+exciting! Well, in reality, we&#39;ll just be using our old clock arithmetic with a
+fancy new name. In pitchclassland, clock arithmetic becomes the new and shiny
+&quot;pitch shift&quot; operator! It is exactly our original definition of \(a\), but
+now with all the kinks worked out. For example:</p>
+<ul>
+<li>\( a(A, 2) = B \)</li>
+<li>\( a(G, 3) = A♯ \)</li>
+</ul>
+<p>Although it seems like we haven&#39;t accomplished much, we actually have a lot of
+power in our hands now. We&#39;ve rigorously created a mathematical formulation of
+music at the most basic level, the pitch class. The bulk of the work that we
+have done so far wasn&#39;t necessarily in creating \ a \), but rather the
+mathematical foundation of <em>any</em> operation that we could apply.</p>
+<p>What other operations can you define on the set of pitch classes? The sky is the
+limit!</p>
+<p>Next, we shall explore another mathematical structure that appears within music:
+the <em>monoid</em>.</p>
+<h2 id="monoids">Monoids</h2>
+<p>Monoids are actually really simple, especially compared to groups. Monoids are
+simply groups without inverse elements; that is, there doesn&#39;t need to be an
+undo operation. So, every group is also a monoid, but not every monoid is a
+group. You can think of monoids as things that can &quot;add,&quot; but not &quot;subtract.&quot;</p>
+<p>The canonical example of a monoid is string concatenation (addition): &quot;abc&quot; +
+&quot;def&quot; = &quot;abcdef&quot;. We can&#39;t really &quot;subtract&quot; a string from this, so string
+concatenation forms a monoid, rather than a fully-fledged group.</p>
+<p>That&#39;s all! A monoid is a group without inverse elements; a group is a monoid
+with inverse elements.</p>
+<p>Let us now explore what we can apply monoids to within music. Now that we know
+the theory behind some basic abstract algebra, we don&#39;t have to go through the
+back-breaking effort of trying to understand the abstract concepts! We can just
+apply what we already know.</p>
+<h2 id="the-chord-monoid">The Chord Monoid</h2>
+<h2 id="parallel-composition-monoid-chords-">Parallel Composition Monoid (Chords)</h2>
+<p>We can define another operator, \( p \), that takes in two notes and returns
+the chord created when stacking them (for now, we will ignore note duration, but
+this approach will work with different durations too). I call this operator \(
+p \) because I like to think of it as a <strong>p</strong>arallel composition operator (as
+opposed to sequential, which we will see later). We shall see that \( p \)
+forms a monoid over the set of all chords.</p>
+<p>As an example usage of \(p\), if we wanted to play the notes C4 and E4 at the
+same time, we could construct this as \( p(C4, E4) \). This will return a
+chord. Note that \( p \) is <em>not</em> an operator over the set of all pitch
+classes (as \(a\) was), but rather an operator over the set of all <em>musical
+objects</em> (all notes, all chords, and as we will see later, all sequential
+compositions). Now, \(p\) will take in two musical objects and return a new
+musical object This allows us to construct chords with many more notes by
+repeatedly applying \(p\); for example, if we wanted a C major chord, we could
+write \( p(p(C4, E4), G4)\).</p>
+<p>Let us quickly verify that \(p\) forms a monoid over the set of all chords:</p>
+<ul>
+<li><strong>Associatve Property</strong>: \(p(p(x, y), z) = p(x, p(y, z)) \). \(x\) and
+  \(y\) stacked with \(z\) is the same as \(x\) stacked with \(y\) and
+  \(z\).</li>
+<li><strong>Identity Element</strong>: The identity element is the chord with zero notes (the
+  &quot;empty chord&quot;).</li>
+<li><strong>Closure Property</strong>: Any chord composed with any other chord is a chord.</li>
+</ul>
+<p>Let&#39;s see one more monoid.</p>
+<h2 id="sequential-composition-monoid">Sequential Composition Monoid</h2>
+<p>We will define another operation, \(s\) to be the operation that composes two
+musical objects <em>sequentially</em>, one after another. You can verify the three
+monoid laws for yourself, if you&#39;d like. What do you think the identity element
+would be?  Hint: <span>don&#39;t forget that notes have a duration, too</span>{:
+.spoiler}.</p>
+<h2 id="algebraic-operations-on-melodies">Algebraic Operations on Melodies</h2>
+<p>And now, we can apply all of what we have learned to actual music. We have
+already defined two very important operators, parallel and sequential
+composition, that operate on sets of notes and chords (musical objects).
+Parallel composition will take two musical objects and layer them; sequential
+composition will take two musical objects and concatenate them. We can define
+many more such operators, like the reverse operator, \(r\). It takes in a
+single musical object and reverses it; a note reversed is just the note itself,
+a parallel composition reversed is all its components reversed, and a sequential
+composition reversed is the composition backward.</p>
+<p>We can also generalize \(a\) to work on any musical object; chords can be
+shifted up and down, and so can melodies.[^tonality] You can think of many
+different algebraic operations on melodies, like changing note durations,
+inverting notes, repeating sequences, etc., but I will leave that up to you!</p>
+<p>[^tonality]:
+    In my project specifically, I allow for shifting up and down by either major
+    intervals, minor intervals, or any (atonal) interval---this adjusts the
+    &quot;flavor&quot; (tonality) of the randomly generated songs.</p>
+<p>The key application of this theory in my project is that I define a set of a few
+of these operations, and randomly (and recursively) apply them to some starter
+melodies. This is a very flexible approach, as incredibly complex songs can be
+generated from simple melodies and operations.</p>
+<p>In other words, the notes themselves of the song are not randomly generated;
+instead, the operations <em>applied</em> to these notes are randomly selected.</p>
+<p>And that&#39;s it! I believe that this approach provides an elegant and simple
+framework for manipulating melodies and musical objects that is easily
+extensible in many different ways. I encourage you to think about how you would
+do things differently, or how you could extend what I have done. Most
+importantly, have fun with it! It is music, after all: the mathematics of sense.</p>
+
+      <hr />
+      <p><a href="/blog">Back to Posts</a></p>
+    </div>
+  </ul>
+  </body>
+</html>

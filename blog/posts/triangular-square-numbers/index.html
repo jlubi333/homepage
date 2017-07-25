@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{sitename}} | {{title}}</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css" />
+    <script
+      async
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"
+    >
+    </script>
+  </head>
+  <body class="main">
+  <nav class="main-nav">
+    <h1>
+      <a href="/">Justin Lubin</a>
+    </h1>
+    <ul>
+        <li>
+          <a href="/about-me">
+            About Me
+          </a>
+        </li>
+        <li>
+          <a href="/portfolio">
+            Portfolio
+          </a>
+        </li>
+        <li>
+          <a href="/blog">
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/contact">
+            Contact
+          </a>
+        </li>
+  </nav>
+    <div class="content post">
+      <h1>Triangular-Square Numbers</h1>
+      <p>I recently saw <a href="https://www.youtube.com/watch?v=Gh8h8MJFFdI">a video</a> by the excellent Matt Parker posing
+a puzzle: is 36 the only triangular-square number? Watch the video, try it out
+for yourself (if you want), and come back here to see my solution (if you want)!</p>
+<h2 id="my-solution">My Solution</h2>
+<p>We start with the equation:</p>
+<p>\[
+n^2 = \frac{m (m + 1)}{2}
+\]</p>
+<p>Rewriting:</p>
+<p>\[
+2n^2 = m^2 + m
+\]</p>
+<p>Now we will make the right-hand side a perfect square (by completing the
+square):</p>
+<p>\[
+\begin{align}
+2n^2 &amp;= m^2 + m + \frac{1}{4} - \frac{1}{4} \\
+2n^2 &amp;= \left(m + \frac{1}{2}\right)^2 - \frac{1}{4} \\
+2n^2 + \frac{1}{4} &amp;= \left(m + \frac{1}{2}\right)^2
+\end{align}
+\]</p>
+<p>However, the \(+1/2\) does not lend itself very well to finding integer
+solutions. As such, we will let:</p>
+<p>\[
+\begin{align}
+x &amp;= n \\
+y &amp;= 2\left(m + \frac{1}{2}\right)
+\end{align}
+\]</p>
+<p>And so:</p>
+<p>\[
+\begin{align}
+\frac{1}{4}y^2 &amp;= \frac{1}{4} \left[ 2\left(m + \frac{1}{2}\right) \right]^2 \\
+&amp;= \frac{1}{4} \cdot 4 \cdot \left(m + \frac{1}{2}\right)^2 \\
+&amp;= \left(m + \frac{1}{2}\right)^2
+\end{align}
+\]</p>
+<p>Now \((x, y)\) will be an integer solution to the equation:</p>
+<p>\[
+2x^2 + \frac{1}{4} = \frac{1}{4}y^2
+\]</p>
+<p>Moving the variables to the left and eliminating fractions, we get:</p>
+<p>\[
+\begin{align}
+2x^2 - \frac{1}{4}y^2 &amp;= -\frac{1}{4} \\
+8x^2 - y^2 &amp;= -1 \\
+y^2 - 8x^2 &amp;= 1
+\end{align}
+\]</p>
+<p>By inspection, we see that the smallest such solution to this is \(y = 3, x =
+1\) (other than the trivial solution \(y = 1, x = 0\)). Keep this in mind.</p>
+<p><em>(\(y^2 - 8x^2 = 1\) is called a <a href="http://mathworld.wolfram.com/PellEquation.html">Pell equation</a>, by the way,
+because it is of the form \(a^2 - Db^2 = 1\).)</em></p>
+<p>Note that this equation is a difference of squares. Recall that \(a^2 - b^2 =
+(a + b)(a - b)\). In this case, \(a^2 = y^2\) and \(b^2 = 8x^2\). So, we
+have:</p>
+<p>\[
+y^2 - 8x^2 = \left(y + x\sqrt{8}\right)\left(y - x\sqrt{8}\right)
+\]</p>
+<p>We know that our solution (y = 3, x = 1) works, so let us now plug it in:</p>
+<p>\[
+\left(y + x\sqrt{8}\right)\left(y - x\sqrt{8}\right) = \left(3 +
+1\sqrt{8}\right)\left(3 - 1\sqrt{8}\right) = 1
+\]</p>
+<p>Fortunately for us, all of this is just equal to \(1\). For all integers
+\(k\), \(1^k\) is equal to \(1\), so we can raise \(\left(3 +
+1\sqrt{8}\right)\left(3 - 1\sqrt{8}\right)\) to the power of any non-negative
+integer \(k\) and our equation will still hold. This allows us to find all
+values (not just one) for \(y\) and \(x\) such that our equation holds.</p>
+<p>\[
+\begin{align}
+\left(y + x\sqrt{8}\right)\left(y - x\sqrt{8}\right)
+    &amp;= \left[\left(3 + \sqrt{8}\right)\left(3 - \sqrt{8}\right)\right]^k
+    = 1^k = 1 \\
+\left(y + x\sqrt{8}\right)\left(y - x\sqrt{8}\right)
+    &amp;= \left(3 + \sqrt{8}\right)^k \left(3 - \sqrt{8}\right)^k
+\end{align}
+\]</p>
+<p>Because \(y\) and \(x\) are integers, we see that the first term of the left
+side must be equal to the first term of the right side, and the second term of
+the left side must be equal to the second term of the right side. This leaves us
+with a system of two equations:</p>
+<p>\[
+\begin{align}
+y + x\sqrt{8} &amp;= \left(3 + \sqrt{8}\right)^k \\
+y - x\sqrt{8} &amp;= \left(3 - \sqrt{8}\right)^k
+\end{align}
+\]</p>
+<p>Subtracting the two equations (to eliminate \(y\)) yields:</p>
+<p>\[
+\begin{align}
+2x\sqrt{8} &amp;= \left(3 + \sqrt{8}\right)^k - \left(3 - \sqrt{8}\right)^k \\
+x &amp;= \frac{\left(3 + \sqrt{8}\right)^k - \left(3 - \sqrt{8}\right)^k}{2\sqrt{8}}
+\end{align}
+\]</p>
+<p>Adding the two equations (to eliminate \(x\sqrt{8}\)) yields:</p>
+<p>\[
+\begin{align}
+2y = \left(3 + \sqrt{8}\right)^k + \left(3 - \sqrt{8}\right)^k \\
+y = \frac{\left(3 + \sqrt{8}\right)^k + \left(3 - \sqrt{8}\right)^k}{2}
+\end{align}
+\]</p>
+<p>Now we will substitute \(x\) and \(y\) into our equations that relate to
+\(n\) and \(m\).</p>
+<p>\[
+\begin{align}
+x &amp;= n, \\
+\therefore n &amp;= x; \\
+y &amp;= 2\left(m + \frac{1}{2}\right), \\
+\therefore m &amp;= \frac{y - 1}{2}.
+\end{align}
+\]</p>
+<p>This finally leaves us with:</p>
+<p>\[
+\begin{align}
+n &amp;= \frac{\left(3 + \sqrt{8}\right)^k - \left(3 - \sqrt{8}\right)^k}{2\sqrt{8}}
+\\
+m &amp;= \frac{\left(3 + \sqrt{8}\right)^k + \left(3 - \sqrt{8}\right)^k - 2}{4}
+\end{align}
+\]</p>
+<p>for any non-negative integer \(k\). ☺</p>
+<h2 id="interactive-formula">Interactive Formula</h2>
+<p><a href="https://www.desmos.com/calculator/y1eft0kvwx">Here</a> is an interactive version of the formula above using the
+wondrous <a href="https://www.desmos.com/">Desmos graphing calculator</a>. Slide \(k\) around to see the
+different values of \(n\) and \(m\)!</p>
+
+      <hr />
+      <p><a href="/blog">Back to Posts</a></p>
+    </div>
+  </ul>
+  </body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{sitename}} | {{title}}</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css" />
+    <script
+      async
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"
+    >
+    </script>
+  </head>
+  <body class="main">
+  <nav class="main-nav">
+    <h1>
+      <a href="/">Justin Lubin</a>
+    </h1>
+    <ul>
+        <li>
+          <a href="/about-me">
+            About Me
+          </a>
+        </li>
+        <li>
+          <a href="/portfolio">
+            Portfolio
+          </a>
+        </li>
+        <li>
+          <a href="/blog">
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/contact">
+            Contact
+          </a>
+        </li>
+  </nav>
+    <div class="content post">
+      <h1>The Tower of Hanoi</h1>
+      <p>The <a href="https://en.wikipedia.org/wiki/Tower_of_Hanoi">Tower of Hanoi</a> is a fun mathematical puzzle involving
+moving rings on three pegs.</p>
+<p><figure>
+<img src='https://upload.wikimedia.org/wikipedia/commons/0/07/Tower_of_Hanoi.jpeg' alt='::Wikimedia Commons'>
+<figcaption><p class='image-caption'>The Tower of Hanoi puzzle with eight rings.</p>
+</figcaption>
+</figure>
+</p>
+<p>The game starts with a set of rings stacked one atop the other in decreasing
+size on the left-most peg. The goal of the game is to move all of the rings
+from the left-most peg to the right-most peg. The only restriction is that you
+cannot place a larger ring on top of a smaller ring. If you want to try it out
+yourself, <a href="https://www.mathsisfun.com/games/towerofhanoi.html">here</a> is a link to an online version of the game.</p>
+<p>In the bottom-left of the game window, you will see that the game displays the
+minimum number of moves needed to complete the puzzle for a given number of
+rings. This is actually a very fun question to explore!</p>
+<h2 id="the-minimum-number-of-moves">The Minimum Number of Moves</h2>
+<p>Let&#39;s let \(M(n)\) denote the minimum number of moves to solve the Tower of
+Hanoi puzzle with \(n\) rings. Assuming that the interactive game I linked to
+is accurate (trust me, it is---and we&#39;ll prove it later!), we can create the
+following table:</p>
+<table>
+<thead>
+<tr>
+<th>\(n\)</th>
+<th>\(M(n)\)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3</td>
+<td>7</td>
+</tr>
+<tr>
+<td>4</td>
+<td>15</td>
+</tr>
+<tr>
+<td>5</td>
+<td>31</td>
+</tr>
+<tr>
+<td>6</td>
+<td>63</td>
+</tr>
+<tr>
+<td>7</td>
+<td>127</td>
+</tr>
+<tr>
+<td>8</td>
+<td>255</td>
+</tr>
+</tbody>
+</table>
+<p>If you&#39;ve ever worked with binary numbers in computer science, the column for
+\(M(n)\) should jump out to you. It suggests the formula \(M(n) = 2^n -
+1\) (the powers of two minus one). But why would this be? Is there a deeper
+mathematical link between the powers of two and the Towers of Hanoi?</p>
+<p>Of course there is! Why else would I be showing you this? First, let&#39;s come up
+with a way to solve the Tower of Hanoi optimally, and from there, we can count
+how many moves we take.</p>
+<p>Let&#39;s first lay down some basic ideas. We know that \(M(n)\) will give us the
+optimal moves for a stack of size \(n.\) In fact, \(n\) can be any natural
+number: \(12\), \(7\), \(143\), or even \(0\) (\(M(0) = 0\) because
+it takes zero moves to move zero rings!). This means that a stack of size, say,
+\(n - 1\) will be solvable in \(M(n-1)\) moves. We now have all the
+background understanding that we need to find some sort of formula for
+\(M(n).\)</p>
+<p>I encourage you to think about how you would solve the Towers of Hanoi! What
+strategies might you employ? Is there a way to simplify the problem?</p>
+<p>Before I give you the solution, let me give you one more hint. In situations
+like these, mathematicians tend to ask themselves the following question: how
+can I reduce this complex problem into a smaller, more managable one? In this
+case, consider how one might reduce a puzzle of size \(n\) into a puzzle of
+size \(n - 1.\)</p>
+<h2 id="the-solution">The Solution</h2>
+<p>Our goal is to come up with a way to reduce a puzzle of size \(n\) into one of
+size \(n - 1.\) If we can do that, we can actually solve a puzzle of any size!</p>
+<p>Consider the concrete example where \(n = 5.\) If we can find a way to express
+this in terms of \(n - 1\), then we will only need to solve the puzzle where
+\(n = 5 - 1 = 4.\) But to solve a puzzle of size \(4\), we will only need to
+solve a puzzle of size \(3\) and use our special reduction rule we came up
+with! And to solve a puzzle of size \(3\) we must solve one of size \(2\),
+and so on and so forth until we are left with a puzzle of size zero. But we know
+how to solve a puzzle of size zero: there is nothing to do! That is, \(M(0) =
+0.\)</p>
+<p>Equipped with this knowledge, let&#39;s try to come up with the reduction rule. Here
+is my solution:</p>
+<ol>
+<li>From the starting position, move the stack of size \(n-1\) that is above
+the largest ring from the left pole to the middle pole. This will take \(
+M(n - 1) \)  moves, because it is equivalent to a puzzle of size \(n -
+1\): we are moving a tower of \(n - 1\) rings from one pole to the next.
+Note that one can simply ignore the largest ring and pretend as if it were
+not there---it will not at all interfere with the process of moving the
+smaller rings because it is larger than all of the other rings, and therefore
+any ring can be placed on it as if it were the normal base of the puzzle.</li>
+<li>Transfer the largest ring from the left pole to the right pole. This will
+take \(1\) move.</li>
+<li>Transfer the stack of size \(n - 1\) from the middle pole to the right
+pole. In a similar manner to the first step, this will take \(M(n - 1)\)
+moves.</li>
+</ol>
+<p>Adding up all the moves from each step gives us:</p>
+<p>\[
+M(n) = M(n - 1) + 1 + M(n - 1) = 2M(n - 1) + 1
+\]
+with \(M(0) = 0.\)</p>
+<p>This will give us the correct answer for any value of \(n\), but it is not in
+explicit form. Rather, we must compute the value for \(M(n)\) <em>recursively</em>.
+In other words, to calculuate (for example) \(M(100)\), we must calculuate
+\(M(99)\), and to calculuate \(M(99)\), we must calculuate \(M(98)\), and
+so on and so forth. That&#39;s a huge number of computations for one simple answer!
+Using this recursive formula (formally known as a <a href="https://en.wikipedia.org/wiki/Recurrence_relation">recurrence
+relation</a>), can we come up with a better, explicit formula
+for \(M(n)\)?</p>
+<p>Based on the previous leading questions that I&#39;ve asked you in this blog post,
+I&#39;m sure that you know the answer.</p>
+<h2 id="an-explicit-formula-for-m-n-">An Explicit Formula for \(M(n)\)</h2>
+<p>Let&#39;s try messing around with our recurrence relation to see if we can come up
+with an explicit formula.</p>
+<p>\[
+\begin{align}
+M(n) &amp;= 2M(n-1) + 1 \\
+M(0) &amp;&amp;= 0 \\
+M(1) &amp;= 2M(0) + 1 &amp;= 1 \\
+M(2) &amp;= 2M(1) + 1 = 2(1) + 1 &amp;= 3 \\
+M(3) &amp;= 2M(2) + 1 = 2(3) + 1 &amp;= 7 \\
+M(4) &amp;= 2M(3) + 1 = 2(7) + 1 &amp;= 15 \\
+M(5) &amp;= 2M(4) + 1 = 2(15) + 1 &amp;= 31 \\
+M(6) &amp;= 2M(5) + 1 = 2(31) + 1 &amp;= 63
+\end{align}
+\]</p>
+<p>This strengthens our initial, unproved conjecture that \(M(n) = 2^n - 1.\) But
+can we prove it? <span>(Once again, you know the answer.)</span>{: .mutter}</p>
+<p>We will use the technique of <a href="https://en.wikipedia.org/wiki/Mathematical_induction">mathematical induction</a> to
+prove this. First, we will prove that our formula works for our &quot;base case&quot; of
+\(n = 0\):</p>
+<p>\[
+\begin{align}
+M(0) &amp;= 0 \\
+2^0 - 1 &amp;= 0 \quad \checkmark
+\end{align}
+\]</p>
+<p>Now we will let \(n\) take on any value \(k.\) This is our hypothesis step.</p>
+<p>\[
+M(k) \stackrel{?}{=} 2^k - 1
+\]</p>
+<p>And finally we shall prove that if our formula holds for \(n = k\), it will
+hold for \(n = k + 1.\) This is our induction step.</p>
+<p>\[
+\begin{align}
+M(k + 1) &amp;= 2M(k) + 1 \\
+&amp;= 2(2^k - 1) + 1 \\
+&amp;= 2(2^k - 1) + 1 \\
+&amp;= 2 \cdot 2^k - 2 + 1 \\
+&amp;= 2^{k + 1} - 1 \quad\quad\quad \checkmark
+\end{align}
+\]</p>
+<p>And so, our formula holds! Because we proved it the formula to be true for \(n
+= 0\) and we proved that if it works for \(k\), it will work for \(k + 1\),
+we have proved that it will work for all natural numbers!</p>
+<p>Note that the base case is very important, because if it did not hold, then our
+hypothesis would be useless. Our hypothesis relies on the fact that there is a
+base case. Without the base case, the hypothesis means nothing!</p>
+<p>For example, even if I somehow proved the statement &quot;If my name is John, then my
+eyes are blue&quot; to be true, it would be completely useless. My name is Justin, so
+even if this hypothesis were true, it would tell you nothing about the color of
+my eyes. In this statement, my name being John acts in a very similar way to the
+base case of our inductive proof.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this blog post, we went from intuitively conjecturing the minimum number of
+moves to solve the Tower of Hanoi puzzle with an arbitrary number of rings to
+finding a recursive and explicit solution to the problem. But this is not the
+end of the Tower of Hanoi problem! There are a few natural extensions that may
+be interesting to pursue.</p>
+<ul>
+<li>What happens if there are more than three pegs?</li>
+<li>For what values of \(n\) is \(M(n)\) defined? Can we extend this
+definition to include, say, negative numbers? Fractions? Real numbers?</li>
+<li>What happens if the rings are sized differently than in the original problem?</li>
+</ul>
+<p>I don&#39;t know the answers to these questions, but these are just a few extensions
+that immediately came to my mind when thinking about the problem. There may be
+no solution to these problems, or infinitely many! Have fun toying around with
+them.</p>
+<p>That is the true spirit of mathematics, after all!</p>
+
+      <hr />
+      <p><a href="/blog">Back to Posts</a></p>
+    </div>
+  </ul>
+  </body>
+</html>
