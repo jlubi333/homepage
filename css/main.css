@@ -1,23 +1,76 @@
+/******************************************************************************\
+|* Variables
+\******************************************************************************/
+
+:root {
+  --main-text-color: #333333;
+  --pop-color: #FF5500;
+  --pop-text-color: #FFFFFF;
+  --pop-color-translucent: rgba(255, 85, 0, 0.8);
+  --main-nav-width: 200px;
+  --spacing: 20px;
+  --content-margin-h: calc(var(--main-nav-width) + var(--spacing));
+  --portfolio-items-per-row: 3;
+}
+
+/******************************************************************************\
+|* General
+\******************************************************************************/
+
 * {
   margin: 0;
   padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html, body {
   height: 100%;
 }
 
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 /******************************************************************************\
 |* Root
 \******************************************************************************/
 
-.root h1 {
-  text-align: center;
-  margin: 50px;
+/* BB4400 00C6FF 282828 */
+
+.root {
+  background-color: var(--pop-color);
+  color: var(--pop-text-color);
 }
 
-.fancy-nav {
+.root-center {
+  width: 100%;
   text-align: center;
+  font-size: 2em;
+
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.root h1 {
+  display: inline-block;
+  margin-bottom: 30px;
+  padding: 0 25px 10px 25px;
+  font-size: 4em;
+  border-bottom: 2px solid var(--pop-text-color);
 }
 
 .fancy-nav li {
@@ -26,21 +79,16 @@ html, body {
 }
 
 /******************************************************************************\
-|* Main
+|* Main Nav
 \******************************************************************************/
 
-.main {
-  margin: 20px 20px 20px 20px;
-  position: relative;
-}
-
 .main-nav {
-  width: 120px;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
+  width: var(--main-nav-width);
+
+  position: fixed;
+  top: var(--spacing);
+  left: var(--spacing);
+  bottom: var(--spacing);
 }
 
 .main-nav h1 {
@@ -51,23 +99,91 @@ html, body {
   list-style-type: none;
 }
 
-.main-nav li {
-  border-left: 1px solid #000000;
-}
-
-.main-nav li::before {
-  content: '—';
-}
+/******************************************************************************\
+|* Content
+\******************************************************************************/
 
 .content {
-  margin-left: 140px;
+  margin: var(--spacing) var(--content-margin-h);
+  color: var(--main-text-color);
 }
 
-.content p,
-.content li {
+.content h2 {
+  font-size: 2em;
+}
+
+/******************************************************************************\
+|* Portfolio
+\******************************************************************************/
+
+.portfolio-projects {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.portfolio-projects a {
+  --item-margin: 5px;
+  --inner-margins: calc(2 * var(--portfolio-items-per-row) * var(--item-margin));
+  --outer-margins: calc(2 * var(--content-margin-h));
+  --available-space: calc(100vw - var(--outer-margins) - var(--inner-margins));
+  --size: calc(var(--available-space) / var(--portfolio-items-per-row));
+
+  width: var(--size);
+  height: var(--size);
+  margin: var(--item-margin);
+
+  display: block;
+  border-radius: 50%;
+  border: 1px solid #555555;
+  padding: 5px;
+  overflow: hidden;
+  position: relative;
+}
+
+.portfolio-projects img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+.portfolio-projects .secondary {
+  background-color: var(--pop-color-translucent);
+  color: var(--pop-text-color);
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateY(100%);
+  transition: transform 0.5s;
+}
+
+.portfolio-projects a:hover .secondary {
+  transform: translateY(0%);
+}
+
+.portfolio-projects .secondary > div {
+  text-align: center;
+  padding: 10px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/******************************************************************************\
+|* Post
+\******************************************************************************/
+
+.post p,
+.post li {
   margin: 5px 0;
 }
 
-.content li {
+.post li {
   margin-left: 20px;
+}
+
+.post a {
+  color: var(--pop-color);
 }

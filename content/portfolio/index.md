@@ -1,4 +1,4 @@
 ---
-layout: main.html
+layout: portfolio.html
 title: Portfolio
 ---

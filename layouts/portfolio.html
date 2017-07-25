@@ -1,0 +1,17 @@
+{{> head title="{{sitename}} | {{title}}" class="main"}}
+  {{> main-nav}}
+    <div class="content">
+      <h2>{{title}}</h2>
+      <ul class="portfolio-projects">
+        {{#each projects}}
+          {{> portfolio-project
+                title=this.title
+                desc=this.desc
+                href=this.href
+                img=this.img
+          }}
+        {{/each}}
+      </ul>
+    </div>
+  </ul>
+{{> end}}

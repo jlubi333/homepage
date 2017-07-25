@@ -1,5 +1,4 @@
 ---
-layout: main.html
 title: About Me
 ---
 
