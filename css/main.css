@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+/******************************************************************************\
+|* Root
+\******************************************************************************/
+
+.root h1 {
+  text-align: center;
+  margin: 50px;
+}
+
+.fancy-nav {
+  text-align: center;
+}
+
+.fancy-nav li {
+  display: inline-block;
+  margin: 0 20px;
+}
+
+/******************************************************************************\
+|* Main
+\******************************************************************************/
+
+.main {
+  margin: 20px 20px 20px 20px;
+  position: relative;
+}
+
+.main-nav {
+  width: 120px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.main-nav h1 {
+  font-size: 1.2em;
+}
+
+.main-nav ul {
+  list-style-type: none;
+}
+
+.main-nav li {
+  border-left: 1px solid #000000;
+}
+
+.main-nav li::before {
+  content: '—';
+}
+
+.content {
+  margin-left: 140px;
+}
+
+.content p,
+.content li {
+  margin: 5px 0;
+}
+
+.content li {
+  margin-left: 20px;
+}
