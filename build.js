@@ -14,6 +14,13 @@ var permalinks = require("metalsmith-permalinks");
 
 var mainLinks =
   [ { "title":
+        "About Me"
+    , "href":
+        "/about-me"
+    , "children":
+        []
+    }
+  , { "title":
         "Portfolio"
     , "href":
         "/portfolio"
@@ -40,13 +47,6 @@ var mainLinks =
               []
           }
         ]
-    }
-  , { "title":
-        "About Me"
-    , "href":
-        "/about-me"
-    , "children":
-        []
     }
   , { "title":
         "Contact"
