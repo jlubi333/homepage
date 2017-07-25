@@ -7,9 +7,13 @@
   --pop-color: #FF5500;
   --pop-text-color: #FFFFFF;
   --pop-color-translucent: rgba(255, 85, 0, 0.8);
-  --main-nav-width: 200px;
-  --spacing: 20px;
-  --content-margin-h: calc(var(--main-nav-width) + var(--spacing));
+
+  --main-nav-width: 250px;
+  --spacing: 50px;
+  --content-margin-l: calc(var(--main-nav-width) + var(--spacing));
+  --content-margin-r: calc(3 * var(--spacing));
+  --content-margin-h: calc(var(--content-margin-l) + var(--content-margin-r));
+
   --portfolio-items-per-row: 3;
 }
 
@@ -92,7 +96,8 @@ a:hover {
 }
 
 .main-nav h1 {
-  font-size: 1.2em;
+  font-size: 1.5em;
+  line-height: 2em;
 }
 
 .main-nav ul {
@@ -104,7 +109,9 @@ a:hover {
 \******************************************************************************/
 
 .content {
-  margin: var(--spacing) var(--content-margin-h);
+  margin: var(--spacing);
+  margin-left: var(--content-margin-l);
+  margin-right: var(--content-margin-r);
   color: var(--main-text-color);
 }
 
@@ -125,7 +132,7 @@ a:hover {
 .portfolio-projects a {
   --item-margin: 5px;
   --inner-margins: calc(2 * var(--portfolio-items-per-row) * var(--item-margin));
-  --outer-margins: calc(2 * var(--content-margin-h));
+  --outer-margins: var(--content-margin-h);
   --available-space: calc(100vw - var(--outer-margins) - var(--inner-margins));
   --size: calc(var(--available-space) / var(--portfolio-items-per-row));
 
