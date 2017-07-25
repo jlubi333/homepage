@@ -1,0 +1,16 @@
+{{> head title="{{sitename}} | {{title}}" class="main"}}
+  {{> main-nav}}
+    <div class="content">
+      <h2>{{title}}</h2>
+      <ul>
+        {{#each posts}}
+          <li>
+            <a href="/{{this.path}}">
+              {{this.title}}
+            </a>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  </ul>
+{{> end}}

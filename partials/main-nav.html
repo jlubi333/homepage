@@ -1,0 +1,13 @@
+<nav class="main-nav">
+  <h1>
+    <a href="/">{{sitename}}</a>
+  </h1>
+  <ul>
+    {{#each main-links}}
+      <li>
+        <a href="{{lookup this 'href'}}">
+          {{lookup this "title"}}
+        </a>
+      </li>
+    {{/each}}
+</nav>
