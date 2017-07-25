@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{sitename}} | {{title}}</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700,700i" rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body class="main">
+  <nav class="main-nav">
+    <h1>
+      <a href="/">Justin Lubin</a>
+    </h1>
+    <ul>
+        <li>
+          <a href="/portfolio">
+            Portfolio
+          </a>
+        </li>
+        <li>
+          <a href="/blog">
+            Blog
+          </a>
+        </li>
+        <li>
+          <a href="/about-me">
+            About Me
+          </a>
+        </li>
+        <li>
+          <a href="/contact">
+            Contact
+          </a>
+        </li>
+  </nav>
+    <div class="content post">
+      <h2></h2>
+      <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="143.723px" height="143.723px" viewBox="0 0 143.723 143.723" enable-background="new 0 0 143.723 143.723"
+	 xml:space="preserve">
+<circle fill="#35C2F2" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="71.861" cy="71.861" r="70.861"/>
+<circle fill="#FFFFFF" stroke="#000000" stroke-width="5" stroke-miterlimit="10" cx="71.861" cy="71.861" r="60.166"/>
+<rect x="66.861" y="1" width="10" height="10.693"/>
+<rect x="132.027" y="66.863" width="10.693" height="10"/>
+<rect x="114.152" y="19.995" transform="matrix(0.7072 -0.7071 0.7071 0.7072 17.0952 91.2657)" width="9.15" height="9.999"/>
+<rect x="20.425" y="113.733" transform="matrix(0.707 -0.7072 0.7072 0.707 -76.6444 52.4708)" width="9.154" height="10.002"/>
+<rect x="113.027" y="114.028" transform="matrix(0.7071 -0.7072 0.7072 0.7071 -49.5967 118.3328)" width="10.002" height="10.002"/>
+<rect x="19.694" y="20.694" transform="matrix(0.707 -0.7073 0.7073 0.707 -10.9366 24.9947)" width="10" height="10.002"/>
+<rect x="1" y="66.861" width="10.694" height="10"/>
+<rect x="66.861" y="132.029" width="10" height="10.693"/>
+<circle fill="#FFFFFF" stroke="#000000" stroke-width="2" stroke-miterlimit="10" cx="71.861" cy="71.862" r="19.5"/>
+</svg>
+
+    </div>
+  </ul>
+  </body>
+</html>
