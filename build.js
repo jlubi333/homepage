@@ -55,7 +55,7 @@ Metalsmith(__dirname)
     ]
   })
   .source("content")
-  .destination("docs")
+  .destination("build")
   .clean(true)
   .use(collections({
     "posts": "blog/posts/*.md"

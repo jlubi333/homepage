@@ -3,3 +3,6 @@ all:
 
 live:
 	(ag -l | ag -v "docs" | entr make) & (live-server ./docs)
+
+deploy:
+	node build.js && cd build && git add -A && git commit -m "Deploy" && git push
