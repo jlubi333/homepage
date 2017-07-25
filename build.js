@@ -160,7 +160,7 @@ var projects =
     , "img": "jella.png"
     }
   , { "title": "Algebraic Operations on Melodies"
-    , "desc": "This was my Wolfram Demonstration for the 2015 **Mathematica** Summer Camp."
+    , "desc": "This was my Wolfram Demonstration for the 2015 Mathematica Summer Camp."
     , "href": "http://demonstrations.wolfram.com/AlgebraicOperationsOnMelodies/"
     , "img": "algebraic-operations-on-melodies.png"
     }
