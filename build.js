@@ -47,7 +47,7 @@ renderer.blockquote = function(quoteHtml) {
   // Removes <p> tag
   var quoteText = quoteHtml.substring(3, quoteHtml.length - 3);
 
-  var lastEm = quoteText.lastIndexOf("---");
+  var lastEm = quoteText.lastIndexOf("—"); // em-dash
 
   var quoteContent;
   var citeString;
@@ -61,7 +61,7 @@ renderer.blockquote = function(quoteHtml) {
     quoteContent =
       quoteText.substring(0, lastEm);
     citeString =
-      "<cite>" + quoteText.substring(lastEm + 3) + "</cite>";
+      "<cite>" + quoteText.substring(lastEm) + "</cite>";
   }
 
   return (

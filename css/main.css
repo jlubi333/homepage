@@ -341,10 +341,6 @@ a:hover {
   margin-top: var(--element-spacing);
 }
 
-.post blockquote cite::before {
-  content: "—";
-}
-
 .post-footer {
   border-top: 1px solid var(--faint-color);
   text-align: center;
