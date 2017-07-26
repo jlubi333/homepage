@@ -73,6 +73,8 @@ a:hover {
 
 .root {
   background-color: var(--pop-color);
+  background-image: url("/assets/img/blur.jpg");
+  background-size: cover;
   color: var(--pop-text-color);
 }
 
@@ -146,6 +148,11 @@ a:hover {
 
 .main-nav li {
   margin-bottom: 5px;
+}
+
+.main-nav a.active {
+  color: var(--pop-color);
+  font-weight: bold;
 }
 
 /******************************************************************************\
