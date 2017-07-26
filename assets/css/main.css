@@ -73,6 +73,8 @@ a:hover {
 
 .root {
   background-color: var(--pop-color);
+  background-image: url("/assets/img/blur.jpg");
+  background-size: cover;
   color: var(--pop-text-color);
 }
 

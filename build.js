@@ -252,8 +252,8 @@ Metalsmith(__dirname)
     }
   ))
   .use(assets(
-    { source: "css"
-    , destination: "css"
+    { source: "assets"
+    , destination: "assets"
     }
   ))
   .use(archive())
