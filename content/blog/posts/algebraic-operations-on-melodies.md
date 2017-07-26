@@ -412,9 +412,7 @@ the theory behind some basic abstract algebra, we don't have to go through the
 back-breaking effort of trying to understand the abstract concepts! We can just
 apply what we already know.
 
-## The Chord Monoid
-
-## Parallel Composition Monoid (Chords)
+### Parallel Composition Monoid (Chords)
 
 We can define another operator, \\( p \\), that takes in two notes and returns
 the chord created when stacking them (for now, we will ignore note duration, but
@@ -444,7 +442,7 @@ Let us quickly verify that \\(p\\) forms a monoid over the set of all chords:
 
 Let's see one more monoid.
 
-## Sequential Composition Monoid
+### Sequential Composition Monoid
 
 We will define another operation, \\(s\\) to be the operation that composes two
 musical objects *sequentially*, one after another. You can verify the three
