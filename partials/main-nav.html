@@ -5,8 +5,13 @@
   <ul>
     {{#each main-links}}
       <li>
-        <a href="{{lookup this 'href'}}">
-          {{lookup this "title"}}
+        <a
+          href="{{this.href}}"
+          {{#ifLinkActive ../path this.href}}
+            class="active"
+          {{/ifLinkActive}}
+        >
+          {{this.title}}
         </a>
       </li>
     {{/each}}

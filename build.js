@@ -1,4 +1,5 @@
 var Metalsmith = require("metalsmith");
+var Handlebars = require("handlebars");
 
 var archive = require("metalsmith-archive");
 var assets = require("metalsmith-assets");
@@ -13,11 +14,28 @@ var permalinks = require("metalsmith-permalinks");
 var marked = require("marked");
 
 ////////////////////////////////////////////////////////////////////////////////
+// Handlebars
+
+Handlebars.registerHelper
+  ( "ifLinkActive"
+  , function (currentPath, href, options) {
+      // current path == blog/post/hi
+      // href = /blog
+      var topLevelPath = "/" + currentPath.split("/")[0];
+      if (topLevelPath == href) {
+        return options.fn(this);
+      } else {
+        return options.inverse(this);
+      }
+    }
+  );
+
+////////////////////////////////////////////////////////////////////////////////
 // Markdown Rendering
 
 var renderer = new marked.Renderer();
 
-renderer.image = function(src, info, caption) {
+renderer.image = function (src, info, caption) {
   var infoArray = info.split("::");
   var title = infoArray[0];
   var sourceName = infoArray[1];
@@ -43,7 +61,7 @@ renderer.image = function(src, info, caption) {
   );
 }
 
-renderer.blockquote = function(quoteHtml) {
+renderer.blockquote = function (quoteHtml) {
   // Removes <p> tag
   var quoteText = quoteHtml.substring(3, quoteHtml.length - 3);
 
@@ -80,43 +98,21 @@ var mainLinks =
         "About Me"
     , "href":
         "/about-me"
-    , "children":
-        []
     }
   , { "title":
         "Portfolio"
     , "href":
         "/portfolio"
-    , "children":
-        []
     }
   , { "title":
         "Blog"
     , "href":
         "/blog"
-    , "children":
-        [ { "title":
-              "Latest Posts"
-          , "href":
-              "/blog/latest"
-          , "children":
-              []
-          }
-        , { "title":
-              "Archive"
-          , "href":
-              "/blog/archive"
-          , "children":
-              []
-          }
-        ]
     }
   , { "title":
         "Contact"
     , "href":
         "/contact"
-    , "children":
-        []
     }
 ]
 
@@ -257,7 +253,7 @@ Metalsmith(__dirname)
     }
   ))
   .use(archive())
-  .build(function(err) {
+  .build(function (err) {
     if (err) {
       throw err;
     }
