@@ -224,7 +224,8 @@ b, strong {
 @media(max-width: 1050px) {
   .content {
     width: var(--content-max-width);
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
