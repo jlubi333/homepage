@@ -16,8 +16,33 @@
     </script>
   </head>
   <body class="root">
-  <div class="root-center">
-    <h1>Justin Lubin</h1>
+  <script>
+    window.onload = function () {
+      var bg = document.getElementById("bg");
+      var rootCenter = document.getElementById("root-center");
+      var fancyLine = document.getElementById("fancy-line");
+
+      var url = "/assets/img/blur.jpg";
+      var img = new Image();
+
+      img.onload = function () {
+        bg.style.backgroundImage = "url(" + url + ")";
+        bg.style.opacity = "1";
+        rootCenter.style.opacity = "1";
+        fancyLine.style.width = "120%";
+        fancyLine.style.left = "-10%";
+      }
+
+      img.src = url;
+    }
+  </script>
+  <div id="bg">
+  </div>
+  <div id="root-center">
+    <h1>
+      <span>Justin Lubin</span>
+      <div id="fancy-line"></div>
+    </h1>
     <nav class="fancy-nav">
       <ul>
           <li>
