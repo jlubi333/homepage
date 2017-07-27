@@ -148,7 +148,7 @@ a:hover {
 }
 
 .main-nav li {
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
 }
 
 .main-nav a.active {
@@ -165,6 +165,12 @@ a:hover {
   margin: var(--spacing);
   margin-left: var(--content-margin-l);
   color: var(--main-text-color);
+}
+
+@media(max-width: 1050px) {
+  .content {
+    max-width: none;
+  }
 }
 
 .content.portfolio {
