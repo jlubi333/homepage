@@ -2,7 +2,7 @@
 title: About Me
 ---
 
-Hi, I'm Justin! I love computer science, math, playing the piano, fencing, and
+Hi, I'm Justin Philip Lubin! I love computer science, math, playing the piano, fencing, and
 crochet. Most of all though, I am passionate about education: not just learning
 great things for myself, but also teaching and sharing what I know with others.
 
