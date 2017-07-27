@@ -30,7 +30,7 @@ If you like what I write (for some weird reason...), then you should check out
 my [portfolio][portfolio] and my [Github account][github]. I'm also on
 [LinkedIn][linkedin], if you're curious.
 
-Thank you so much for taking the time to read my blog!
+Thanks for stopping by!
 
 [elm]: http://elm-lang.org/
 [sonata]: https://www.youtube.com/watch?v=YE2iyBRmA_g
