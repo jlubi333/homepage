@@ -398,6 +398,14 @@ b, strong {
   font-weight: bold;
 }
 
+.post ul {
+  list-style-type: disc;
+}
+
+.post ol {
+  list-style-type: decimal;
+}
+
 .post li {
   margin-left: 3rem;
 }
