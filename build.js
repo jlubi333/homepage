@@ -210,7 +210,6 @@ Metalsmith(__dirname)
   .destination("build")
   .clean(true)
   .use(drafts())
-  .use(dateFormatter())
   .use(collections(
     { "posts":
         { "pattern": "blog/posts/*.md"
@@ -227,6 +226,7 @@ Metalsmith(__dirname)
       }
     ]
   ))
+  .use(dateFormatter())
   .use(markdown(
     { "renderer": renderer
     , "smartypants": true

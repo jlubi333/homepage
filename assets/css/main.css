@@ -18,7 +18,7 @@
 
   --portfolio-items-per-row: 3;
 
-  --element-spacing: 0.5em;
+  --element-spacing: 0.5rem;
   --normal-border-radius: 5px;
   --special-width: 80%;
   --special-margin: calc(2 * var(--element-spacing)) auto;
@@ -82,7 +82,7 @@ a:hover {
 .root-center {
   width: 100%;
   text-align: center;
-  font-size: 2em;
+  font-size: 2rem;
 
   position: absolute;
   top: 50%;
@@ -93,7 +93,7 @@ a:hover {
   display: inline-block;
   margin-bottom: 30px;
   padding: 0 25px 10px 25px;
-  font-size: 4em;
+  font-size: 4rem;
   border-bottom: 2px solid var(--pop-text-color);
 }
 
@@ -115,6 +115,7 @@ a:hover {
 
 .main-nav {
   width: var(--main-nav-width);
+  color: var(--main-text-color);
 
   position: fixed;
   top: var(--spacing);
@@ -136,10 +137,9 @@ a:hover {
 }
 
 .main-nav h1 {
-  /* font-size * line-height == same for .content h1 */
-  font-size: 1.5em;
-  line-height: 1em;
-
+  font-size: 1.5rem;
+  line-height: 2.5rem; /* to match .content h1 line-height */
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
@@ -172,10 +172,9 @@ a:hover {
 }
 
 .content h1 {
-  /* font-size * line-height == same for .main-nav h1 */
-  font-size: 2em;
-  line-height: 0.75em;
-
+  font-size: 2rem;
+  line-height: 2.5rem;
+  font-weight: bold;
   margin-bottom: 20px;
 }
 
@@ -245,7 +244,7 @@ a:hover {
 
 .blog ul {
   list-style-type: none;
-  font-size: 1.2em;
+  font-size: 1.2rem;
 }
 
 .blog li {
@@ -263,11 +262,11 @@ a:hover {
 \******************************************************************************/
 
 .post {
-  line-height: 1.5em;
+  line-height: 1.5rem;
 }
 
 .post h2 {
-  font-size: 1.5em;
+  font-size: 1.5rem;
 }
 
   .post p
@@ -275,12 +274,23 @@ a:hover {
 , .post h2
 , .post h3
 , .post h4
+, .post h5
+, .post h6
 {
   margin: var(--element-spacing) 0;
 }
 
+  .post h2
+, .post h3
+, .post h4
+, .post h5
+, .post h6
+{
+  font-weight: bold;
+}
+
 .post li {
-  margin-left: 3em;
+  margin-left: 3rem;
 }
 
 .post a {
@@ -347,6 +357,11 @@ a:hover {
 }
 
 .post-footer {
+  padding-top: 10px;
   border-top: 1px solid var(--faint-color);
   text-align: center;
+}
+
+.post-footer a {
+  color: var(--pop-color);
 }
