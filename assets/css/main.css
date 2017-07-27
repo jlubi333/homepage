@@ -5,6 +5,7 @@
 :root {
   --main-text-color: #333333;
   --pop-color: #FF5500;
+  --pop-color-muted: #AA5500;
   --pop-text-color: #FFFFFF;
   --pop-color-translucent: rgba(255, 85, 0, 0.8);
   --medium-color: #555555;
@@ -51,6 +52,10 @@
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: "Roboto", sans-serif;
 }
@@ -76,20 +81,33 @@ b, strong {
 |* Root
 \******************************************************************************/
 
-/* BB4400 00C6FF 282828 */
-
 .root {
-  background-color: var(--pop-color);
-  background-image: url("/assets/img/blur.jpg");
-  background-size: 100vmax 100vmax;
+  height: 100%;
+  background-color: var(--pop-color-muted);
   color: var(--pop-text-color);
   overflow: hidden;
 }
 
-.root-center {
+#bg {
+  width: 100%;
+  height: 100%;
+  background-size: 100vmax 100vmax;
+
+  /* Set via JavaScript: */
+  /* background-image: url("/assets/img/blur.jpg"); */
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+#root-center {
   width: 100%;
   text-align: center;
   font-size: 2rem;
+
+  /* Set via JavaScript */
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  transition-delay: 1.1s;
 
   position: absolute;
   top: 50%;
@@ -98,10 +116,21 @@ b, strong {
 
 .root h1 {
   display: inline-block;
-  margin-bottom: 30px;
-  padding: 0 25px 10px 25px;
-  font-size: 4rem;
-  border-bottom: 2px solid var(--pop-text-color);
+  font-size: 5rem;
+}
+
+#fancy-line {
+  height: 2px;
+  background-color: var(--pop-text-color);
+  margin: 0.5rem 0 1rem 0;
+
+  /* Set via JavaScript */
+  position: relative;
+  left: 50%;
+  width: 0;
+
+  transition: width 1s ease-in-out, left 1s ease-in-out;
+  transition-delay: 1.1s;
 }
 
 .fancy-nav li {
