@@ -3,6 +3,7 @@
 \******************************************************************************/
 
 :root {
+  --bg-color: #FFFFFF;
   --main-text-color: #333333;
   --pop-color: #FF5500;
   --pop-color-muted: #AA5500;
@@ -58,6 +59,7 @@ html {
 
 body {
   font-family: "Roboto", sans-serif;
+  background-color: var(--bg-color);
 }
 
 a {
