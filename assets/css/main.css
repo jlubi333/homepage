@@ -28,11 +28,10 @@
 @media(max-width: 1050px) {
   :root {
     --portfolio-items-per-row: 2;
-    --content-margin-l: var(--spacing);
   }
 }
 
-@media(max-width: 650px) {
+@media(max-width: 750px) {
   :root {
     --portfolio-items-per-row: 1;
   }
@@ -63,6 +62,14 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+i, em {
+  font-style: italic;
+}
+
+b, strong {
+  font-weight: bold;
 }
 
 /******************************************************************************\
@@ -102,7 +109,7 @@ a:hover {
   margin: 0 20px;
 }
 
-@media(max-width: 650px) {
+@media(max-width: 750px) {
   .fancy-nav li {
     display: block;
     margin: 10px;
@@ -126,13 +133,15 @@ a:hover {
 @media(max-width: 1050px) {
   .main-nav {
     position: static;
-    width: 100%;
-    margin: var(--spacing);
+    width: var(--content-max-width);
+    margin: var(--spacing) auto;
   }
+}
 
-  .main-nav li {
-    display: inline-block;
-    margin: 0 10px;
+@media(max-width: 750px) {
+  .main-nav {
+    width: auto;
+    margin: var(--spacing);
   }
 }
 
@@ -148,7 +157,23 @@ a:hover {
 }
 
 .main-nav li {
-  margin-bottom: 5px;
+  display: block;
+  margin: 1rem 0;
+}
+
+@media(max-width: 1050px) {
+  .main-nav li {
+    display: inline-block;
+    margin: 0 1rem;
+  }
+}
+
+@media(max-width: 750px) {
+  .main-nav li {
+    display: block;
+    font-size: 1.2rem;
+    margin: 1rem;
+  }
 }
 
 .main-nav a.active {
@@ -165,6 +190,20 @@ a:hover {
   margin: var(--spacing);
   margin-left: var(--content-margin-l);
   color: var(--main-text-color);
+}
+
+@media(max-width: 1050px) {
+  .content {
+    width: var(--content-max-width);
+    margin: auto;
+  }
+}
+
+@media(max-width: 750px) {
+  .content {
+    width: auto;
+    margin: var(--spacing);
+  }
 }
 
 .content.portfolio {
@@ -203,14 +242,45 @@ a:hover {
   display: block;
   border-radius: 50%;
   border: 1px solid var(--faint-color);
-  padding: 5px;
+  padding: 10px;
   overflow: hidden;
   position: relative;
+
+  /* Fix for bug where sliding panel isn't clipped properly */
+  /* Source: https://stackoverflow.com/a/16681137 */
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+
+@media(max-width: 1050px) {
+  .portfolio-projects a {
+    --available-space: calc(var(--content-max-width) - var(--inner-margins));
+  }
+}
+
+@media(max-width: 750px) {
+  .portfolio-projects a {
+    --available-space: calc(100vw - 2 * var(--spacing));
+  }
 }
 
 .portfolio-projects img {
   width: 100%;
   border-radius: 50%;
+}
+
+.portfolio-projects h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
 }
 
 .portfolio-projects .secondary {
@@ -231,9 +301,11 @@ a:hover {
 }
 
 .portfolio-projects .secondary > div {
+  width: 100%;
   text-align: center;
-  padding: 10px;
-  position: relative;
+  padding: 15px;
+
+  position: absolute;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -255,6 +327,14 @@ a:hover {
   display: inline-block;
   color: var(--faint-color);
   width: 175px;
+}
+
+@media(max-width: 750px) {
+  .blog .date {
+    display: block;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
 }
 
 /******************************************************************************\
@@ -353,7 +433,6 @@ a:hover {
   display: block;
   font-style: italic;
   text-align: right;
-  margin-top: var(--element-spacing);
 }
 
 .post-footer {
