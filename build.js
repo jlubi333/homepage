@@ -181,7 +181,7 @@ var projects =
     , "img": "multi-painter.png"
     }
   , { "title": "Physicist's Sketchpad"
-    , "desc": "Physicist's Sketchpad will solve any related rates problem dealing with triangles by using the arcane magic known as calculus."
+    , "desc": "Physicist's Sketchpad will solve related rates problems dealing with triangles by using the arcane magic known as calculus."
     , "href": "http://jlubi333.github.io/jpl-dev/psketch/"
     , "img": "psketch.png"
     }
