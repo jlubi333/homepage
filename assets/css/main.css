@@ -6,7 +6,6 @@
   --bg-color: #FFFFFF;
   --main-text-color: #333333;
   --pop-color: #FF5500;
-  --pop-color-muted: #AA5500;
   --pop-text-color: #FFFFFF;
   --pop-color-translucent: rgba(255, 85, 0, 0.8);
   --medium-color: #555555;
@@ -85,7 +84,7 @@ b, strong {
 
 .root {
   height: 100%;
-  background-color: var(--pop-color-muted);
+  background-color: var(--main-text-color);
   color: var(--pop-text-color);
   overflow: hidden;
 }
