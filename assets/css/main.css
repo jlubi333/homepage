@@ -39,6 +39,30 @@
 }
 
 /******************************************************************************\
+|* Animations
+\******************************************************************************/
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes expand-line {
+  0% {
+    left: 50%;
+    width: 0;
+  }
+  100% {
+    left: -10%;
+    width: 120%;
+  }
+}
+
+/******************************************************************************\
 |* General
 \******************************************************************************/
 
@@ -92,12 +116,9 @@ b, strong {
 #bg {
   width: 100%;
   height: 100%;
-  background-size: 100vmax 100vmax;
+  background-image: linear-gradient(135deg, #FF8800, #FF3300);
+  background-color: #FF5500;
 
-  /* Set via JavaScript: */
-  /* background-image: url("/assets/img/blur.jpg"); */
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
 }
 
 #root-center {
@@ -105,14 +126,12 @@ b, strong {
   text-align: center;
   font-size: 2rem;
 
-  /* Set via JavaScript */
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  transition-delay: 1.1s;
-
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+
+  opacity: 0;
+  animation: 1s ease-in-out forwards appear;
 }
 
 .root h1 {
@@ -125,13 +144,11 @@ b, strong {
   background-color: var(--pop-text-color);
   margin: 0.5rem 0 1rem 0;
 
-  /* Set via JavaScript */
   position: relative;
+
   left: 50%;
   width: 0;
-
-  transition: width 1s ease-in-out, left 1s ease-in-out;
-  transition-delay: 1.1s;
+  animation: 1s ease-in-out 1.1s 1 forwards expand-line;
 }
 
 .fancy-nav li {

@@ -1,41 +1,4 @@
 {{> head class="root"}}
-  <script>
-    window.onload = function () {
-      var bg = document.getElementById("bg");
-      var rootCenter = document.getElementById("root-center");
-      var fancyLine = document.getElementById("fancy-line");
-
-      var url = "/assets/img/blur.jpg";
-      var img = new Image();
-
-      img.onload = function () {
-        bg.style.backgroundImage = "url(" + url + ")";
-        bg.style.opacity = "1";
-        rootCenter.style.opacity = "1";
-        fancyLine.style.width = "120%";
-        fancyLine.style.left = "-10%";
-      }
-
-      img.src = url;
-    }
-  </script>
-  <noscript>
-    <style>
-      #bg {
-        background-image: url("/assets/img/blur.jpg");
-        opacity: 1;
-      }
-
-      #root-center {
-        opacity: 1;
-      }
-
-      #fancy-line {
-        width: 120%;
-        left: -10%;
-      }
-    </style>
-  </noscript>
   <div id="bg">
   </div>
   <div id="root-center">
