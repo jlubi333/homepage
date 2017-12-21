@@ -22,12 +22,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jlubi333/homepage.git"
+    "url": "git+https://github.com/justinlubin/homepage.git"
   },
   "author": "Justin Lubin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jlubi333/homepage/issues"
+    "url": "https://github.com/justinlubin/homepage/issues"
   },
-  "homepage": "https://github.com/jlubi333/homepage"
+  "homepage": "https://github.com/justinlubin/homepage"
 }

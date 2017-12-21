@@ -35,5 +35,5 @@ Thanks for stopping by!
 [elm]: http://elm-lang.org/
 [sonata]: https://www.youtube.com/watch?v=YE2iyBRmA_g
 [portfolio]: /portfolio
-[github]: https://github.com/jlubi333/
+[github]: https://github.com/justinlubin/
 [linkedin]: https://www.linkedin.com/in/justin-philip-lubin
