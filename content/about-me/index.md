@@ -27,7 +27,7 @@ Some quick facts about me:
   Minor, Op.  111][sonata].
 
 If you like what I write (for some weird reason...), then you should check out
-my [portfolio][portfolio] and my [Github account][github]. I'm also on
+my [portfolio][portfolio] and my [GitHub account][github]. I'm also on
 [LinkedIn][linkedin], if you're curious.
 
 Thanks for stopping by!
