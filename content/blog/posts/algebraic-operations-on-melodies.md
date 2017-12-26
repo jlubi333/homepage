@@ -242,11 +242,11 @@ ordinary subtraction and addition really do fit our laws for \\( d \\) and \\( a
 
 ### Formalizing Our Operations
 
-Let us first focus on our \\( a \\) function. We are now ready to formally
-define exactly the laws that a function must follow if it wishes to serve as an
-\\( a \\) function. This will allow us to generalize our \\( a \\) function to
-pretty much anything we can think of, including music (which is how we got into
-this whole formalization business in the first place).
+Let us first focus on our \\( a \\) function.
+We are now ready to formally define exactly the laws that a function must follow
+if it wishes to serve as an \\( a \\) function. This will allow us to generalize
+our \\( a \\) function to pretty much anything we can think of, including music
+(which is how we got into this whole formalization business in the first place).
 
 - Firstly, we want \\( a \\) to be *associative*. All this means is that \\(
   a(a(x, y), z) = a(x, a(y, z)) \\). Ordinary addition follows this law for
@@ -300,12 +300,12 @@ Speaking of real world applications... let's get back to the music!
 that our definition of \\(a\\) is powerful enough to be able to define \\(d\\)
 in terms of \\(a\\). This means that we don't need to come up with a new set of
 laws! We can rely on the fact that we proved \\(a\\) to be correct, and so we
-know that \\(d\\) has solid mathematical grounding. It's quite a simple
-definition, but it uses the important fact that every element must have an
-inverse. We let \\( d(x, y) = a(y, x^{-1})\\), and we're done. For integers,
-this means that \\( d(x, y) = a(y, -x) = y - x\\), which is exactly what we said
-before. We can now prove our properties about \\(d\\), too. For the case of
-integers, we have:
+know that \\(d\\) has solid mathematical grounding.
+It's quite a simple definition, but it uses the important fact that every
+element must have an inverse. We let \\( d(x, y) = a(y, x^{-1})\\), and we're
+done. For integers, this means that \\( d(x, y) = a(y, -x) = y - x\\), which is
+exactly what we said before. We can now prove our properties about \\(d\\), too.
+For the case of integers, we have:
 
 - \\( -d(y, x) = -(x - y) = -x + y = y - x = d(x, y) \\)
 - \\( d(x, x) = x - x = 0 \\)
