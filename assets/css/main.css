@@ -114,11 +114,18 @@ b, strong {
 }
 
 #bg {
+  position: absolute;
+  z-index: -101;
+
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(135deg, #FF8800, #FF3300);
+  background-image: linear-gradient(180deg, hsl(12, 100%, 50%), hsl(12, 100%, 15%));
   background-color: #FF5500;
+}
 
+#voronoi {
+  position: absolute;
+  z-index: -100;
 }
 
 #root-center {
@@ -131,7 +138,7 @@ b, strong {
   transform: translateY(-50%);
 
   opacity: 0;
-  animation: 1s ease-in-out forwards appear;
+  animation: 1s ease-in-out 0.1s forwards appear;
 }
 
 .root h1 {
@@ -148,7 +155,7 @@ b, strong {
 
   left: 50%;
   width: 0;
-  animation: 1s ease-in-out 1.1s 1 forwards expand-line;
+  animation: 1s ease-in-out 1.2s forwards expand-line;
 }
 
 .fancy-nav li {
