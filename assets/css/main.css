@@ -5,9 +5,9 @@
 :root {
   --bg-color: #FFFFFF;
   --main-text-color: #333333;
-  --pop-color: #FF5500;
+  --pop-color: rgb(255, 68, 0);
   --pop-text-color: #FFFFFF;
-  --pop-color-translucent: rgba(255, 85, 0, 0.8);
+  --pop-color-translucent: rgba(255, 68, 0, 0.8);
   --medium-color: #555555;
   --faint-color: #BBBBBB;
   --very-faint-color: #EEEEEE;
