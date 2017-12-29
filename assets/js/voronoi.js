@@ -32,7 +32,7 @@
     };
   }
 
-  var ctx, bbox, points, colors;
+  var mainCanvas, ctx, bbox, points, colors;
   var previousTimestamp, delta;
 
   function render() {
@@ -89,22 +89,25 @@
     window.requestAnimationFrame(step);
   }
 
-
-  window.onload = function () {
-    var mainCanvas = document.getElementById("voronoi");
+  function setSizes() {
     mainCanvas.width = window.innerWidth;
     mainCanvas.height = window.innerHeight;
 
-    bbox = {xl: -10, xr: mainCanvas.width + 10, yt: -10, yb: mainCanvas.height + 10};
-
-    ctx = mainCanvas.getContext("2d");
+    bbox = {
+      xl: -10,
+      xr: mainCanvas.width + 10,
+      yt: -10,
+      yb: mainCanvas.height + 10
+    };
 
     var grd = ctx.createLinearGradient(bbox.xr / 2, 0, bbox.xr / 2, bbox.yb);
     grd.addColorStop(0, "hsl(12, 100%, 50%)");
     grd.addColorStop(1, "hsl(12, 100%, 15%)");
     ctx.fillStyle = grd;
     ctx.lineWidth = 2;
+  }
 
+  function setPoints() {
     var N = 50;
 
     points = [];
@@ -118,6 +121,25 @@
       var stroke = "rgba(0, 0, 0, 0.05)";
       colors.push(color(stroke));
     }
+  }
+
+  window.onload = function () {
+    mainCanvas = document.getElementById("voronoi");
+    ctx = mainCanvas.getContext("2d");
+
+    var resizeTimer;
+    window.onresize = function() {
+      setSizes();
+
+      // Only execute when finished resizing
+      clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(function() {
+        setPoints();
+      }, 250);
+    };
+
+    setSizes();
+    setPoints();
 
     window.requestAnimationFrame(step);
   }
