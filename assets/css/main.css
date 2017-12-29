@@ -12,6 +12,12 @@
   --faint-color: #BBBBBB;
   --very-faint-color: #EEEEEE;
 
+  --display-font: "Raleway", sans-serif;
+  --display-font-weight: 700;
+
+  --body-font: "Roboto", sans-serif;
+  --body-font-weight: 400;
+
   --main-nav-width: 300px;
   --spacing: 50px;
   --content-margin-l: calc(var(--main-nav-width) + var(--spacing));
@@ -19,7 +25,7 @@
 
   --portfolio-items-per-row: 3;
 
-  --element-spacing: 0.5rem;
+  --element-spacing: 0.5em;
   --normal-border-radius: 5px;
   --special-width: 80%;
   --special-margin: calc(2 * var(--element-spacing)) auto;
@@ -81,8 +87,14 @@ html {
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: var(--body-font);
+  font-weight: var(--body-font-weight);
   background-color: var(--bg-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--display-font);
+  font-weight: var(--display-font-weight);
 }
 
 a {
@@ -130,15 +142,17 @@ b, strong {
 
 #root-center {
   width: 100%;
-  text-align: center;
+  font-family: var(--display-font);
+  font-weight: 300;
   font-size: 2rem;
+  text-align: center;
 
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
 
   opacity: 0;
-  animation: 1s ease-in-out 0.1s forwards appear;
+  animation: 1s linear 0.1s forwards appear;
 }
 
 .root h1 {
@@ -150,6 +164,7 @@ b, strong {
   height: 2px;
   background-color: var(--pop-text-color);
   margin: 0.5rem 0 1rem 0;
+  opacity: 0.25;
 
   position: relative;
 
@@ -202,7 +217,6 @@ b, strong {
 .main-nav h1 {
   font-size: 1.5rem;
   line-height: 2.5rem; /* to match .content h1 line-height */
-  font-weight: bold;
   margin-bottom: 20px;
 }
 
@@ -267,8 +281,6 @@ b, strong {
 
 .content h1 {
   font-size: 2rem;
-  line-height: 2.5rem;
-  font-weight: bold;
   margin-bottom: 20px;
 }
 
@@ -333,8 +345,7 @@ b, strong {
 }
 
 .portfolio-projects h3 {
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: 1.5rem;
   margin-bottom: 0.2rem;
 }
 
@@ -401,7 +412,11 @@ b, strong {
 }
 
 .post h2 {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
+}
+
+.post h3 {
+  font-size: 1.3rem;
 }
 
   .post p
@@ -413,15 +428,6 @@ b, strong {
 , .post h6
 {
   margin: var(--element-spacing) 0;
-}
-
-  .post h2
-, .post h3
-, .post h4
-, .post h5
-, .post h6
-{
-  font-weight: bold;
 }
 
 .post ul {
