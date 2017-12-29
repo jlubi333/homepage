@@ -142,7 +142,6 @@ b, strong {
 
 .fancy-underline.header:before {
   background-color: var(--pop-text-color);
-  height: 2px;
 }
 
 .fancy-underline.body:before {
