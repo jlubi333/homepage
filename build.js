@@ -122,22 +122,22 @@ var mainLinks =
 var projects =
   [ { "title": "Camille"
     , "desc": "Camille is an interpreted yet statically-typed programming language implemented in Haskell."
-    , "href": "https://github.com/jlubi333/Camille"
+    , "href": "https://github.com/justinlubin/Camille"
     , "img": "camille.png"
     }
   , { "title": "Julina"
     , "desc": "Julina is a linear algebra library written in C."
-    , "href": "https://github.com/jlubi333/Julina"
+    , "href": "https://github.com/justinlubin/Julina"
     , "img": "julina.png"
     }
   , { "title": "Fractastic"
     , "desc": "Fractastic is a simple and approachable fractal generator written in C."
-    , "href": "https://github.com/jlubi333/fractastic"
+    , "href": "https://github.com/justinlubin/fractastic"
     , "img": "fractastic.png"
     }
   , { "title": "JPL Runner"
     , "desc": "JPL Runner is a 2D infinite runner game written in Typescript designed to work well with mobile devices."
-    , "href": "https://jlubi333.github.io/jpl-runner/"
+    , "href": "https://justinlubin.github.io/jpl-runner/"
     , "img": "jpl-runner.png"
     }
   , { "title": "Bin :: Hex"
@@ -152,7 +152,7 @@ var projects =
     }
   , { "title": "Jella"
     , "desc": "Jella is a mathematical modeling system heavily inspired by STELLA (made by isee systems). It is a multi-compartment model simulator."
-    , "href": "http://jlubi333.github.io/jpl-dev/jella/"
+    , "href": "http://justinlubin.github.io/jpl-dev/jella/"
     , "img": "jella.png"
     }
   , { "title": "Algebraic Operations on Melodies"
@@ -162,37 +162,37 @@ var projects =
     }
   , { "title": "JPL Haiku"
     , "desc": "Need to write a haiku for English class? Look no further."
-    , "href": "http://jlubi333.github.io/jpl-dev/jplhaiku/"
+    , "href": "http://justinlubin.github.io/jpl-dev/jplhaiku/"
     , "img": "jpl-haiku.png"
     }
   , { "title": "JPL Clock"
     , "desc": "What time is it anyway?"
-    , "href": "http://jlubi333.github.io/jpl-dev/clock/"
+    , "href": "http://justinlubin.github.io/jpl-dev/clock/"
     , "img": "jpl-clock.png"
     }
   , { "title": "Jicobot"
     , "desc": "Jicobot is a finite-state machine inspired by Picobot."
-    , "href": "http://jlubi333.github.io/jpl-dev/jicobot/"
+    , "href": "http://justinlubin.github.io/jpl-dev/jicobot/"
     , "img": "jicobot.png"
     }
   , { "title": "MultiPainter"
     , "desc": "Have fun painting with your friends!"
-    , "href": "http://jlubi333.github.io/jpl-dev/multipainter/"
+    , "href": "http://justinlubin.github.io/jpl-dev/multipainter/"
     , "img": "multi-painter.png"
     }
   , { "title": "Physicist's Sketchpad"
     , "desc": "Physicist's Sketchpad will solve related rates problems dealing with triangles by using the arcane magic known as calculus."
-    , "href": "http://jlubi333.github.io/jpl-dev/psketch/"
+    , "href": "http://justinlubin.github.io/jpl-dev/psketch/"
     , "img": "psketch.png"
     }
   , { "title": "Reaction Reactor"
     , "desc": "For when a single reaction image just isn't enough."
-    , "href": "http://jlubi333.github.io/ReactionReactor/"
+    , "href": "http://justinlubin.github.io/ReactionReactor/"
     , "img": "reaction-reactor.png"
     }
   , { "title": "Homework Roulette"
     , "desc": "Teachers, why not add a bit of risk to your homework collection routine?"
-    , "href": "http://jlubi333.github.io/jpl-dev/roulette/"
+    , "href": "http://justinlubin.github.io/jpl-dev/roulette/"
     , "img": "homework-roulette.png"
     }
   ]
