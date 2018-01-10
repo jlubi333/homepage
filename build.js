@@ -142,7 +142,7 @@ var projects =
     }
   , { "title": "Bin :: Hex"
     , "desc": "Bin :: Hex is a multiplayer educational game that will improve your binary and hexadecimal conversion skills."
-    , "href": "http://binhex.jlub.in"
+    , "href": "https://github.com/justinlubin/bin-hex"
     , "img": "bin-hex.png"
     }
   , { "title": "jpl :: NHL"
