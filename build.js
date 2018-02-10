@@ -105,6 +105,11 @@ var mainLinks =
         "/portfolio"
     }
   , { "title":
+        "Talks"
+    , "href":
+        "/talks"
+    }
+  , { "title":
         "Blog"
     , "href":
         "/blog"
