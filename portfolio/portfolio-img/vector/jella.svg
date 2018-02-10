@@ -38,6 +38,13 @@
         </li>
         <li>
           <a
+            href="/talks"
+            class="fancy-underline body
+            "
+          >Talks</a>
+        </li>
+        <li>
+          <a
             href="/blog"
             class="fancy-underline body
             "
