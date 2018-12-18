@@ -91,38 +91,39 @@ renderer.blockquote = function (quoteHtml) {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Main Links
+// Site Metadata
+
+var siteName = "Justin Lubin"
+
+var root = "/homepage-2017";
 
 var mainLinks =
   [ { "title":
         "About Me"
     , "href":
-        "/about-me"
+        root + "/about-me"
     }
   , { "title":
         "Portfolio"
     , "href":
-        "/portfolio"
+        root + "/portfolio"
     }
   , { "title":
         "Talks"
     , "href":
-        "/talks"
+        root + "/talks"
     }
   , { "title":
         "Blog"
     , "href":
-        "/blog"
+        root + "/blog"
     }
   , { "title":
         "Contact"
     , "href":
-        "/contact"
+        root + "/contact"
     }
 ]
-
-////////////////////////////////////////////////////////////////////////////////
-// Portfolio
 
 var projects =
   [ { "title": "Camille"
@@ -206,13 +207,14 @@ var projects =
 
 Metalsmith(__dirname)
   .metadata(
-    { "sitename": "Justin Lubin"
+    { "sitename": siteName
     , "main-links": mainLinks
     , "projects": projects
+    , "root": root
     }
   )
   .source("content")
-  .destination("build")
+  .destination(root.substring(1))
   .clean(true)
   .use(drafts())
   .use(collections(
